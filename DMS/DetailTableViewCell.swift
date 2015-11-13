@@ -18,8 +18,10 @@ class DetailTableViewCell: UITableViewCell {
     func configureVeiw(){
         self.detailCellImageView.layer.cornerRadius = self.detailCellImageView.frame.size.width / 2
         self.detailCellImageView.clipsToBounds = true
-        self.detailCellImageView.layer.borderWidth = 3.0
+        self.detailCellImageView.layer.borderWidth = 1.0
         self.detailCellImageView.layer.borderColor = UIColor(red: 32/255, green: 173/255, blue: 82/255, alpha: 1.0).CGColor
+       // self.detailCellImageView.layer.borderColor = UIColor(red: 0/255, green: 0/255, blue: 111/255, alpha: 1.0).CGColor
+
 
     }
     

@@ -43,6 +43,11 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("detailcell", forIndexPath: indexPath) as? DetailTableViewCell
 
+        if indexPath.row % 2 == 0{
+            cell?.detailCellImageView.image = UIImage(named: "pdf1.png")
+        }else{
+            cell?.detailCellImageView.image = UIImage(named: "wordicon.png")
+        }
         cell?.configureVeiw()
         return cell!
     }
