@@ -23,6 +23,8 @@ class FormViewController: UIViewController {
     @IBOutlet weak var containerVeiw: UIView!
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     
+    var docTitle: String?
+    
     
     var sectionButtons = [UIButton]()
     var controllerClasses = [Int: String]()
@@ -50,6 +52,7 @@ class FormViewController: UIViewController {
 
     
         self.sectionButtonClicks(sectionAButton)
+        self.navigationItem.title = docTitle
         
     }
     

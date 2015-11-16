@@ -49,13 +49,23 @@ class InfoTableViewController: UITableViewController {
     }
     
     
+    
+    
     @IBAction func upVersionForm(sender: UIButton) {
-        
+        performSegueWithIdentifier("upversionform", sender: sender)
         
     }
     
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "upversionform"{
+            let navcontroller = segue.destinationViewController as? UINavigationController
+            if let controller = navcontroller?.topViewController as? FormViewController
+            {
+                controller.docTitle = "Up Version"
+            }
+        }
+    }
     
 
    

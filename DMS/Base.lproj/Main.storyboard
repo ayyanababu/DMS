@@ -1338,6 +1338,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ei5-B6-Ssi" id="Uti-0D-uKr"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ico-iy-IXG">
                                 <rect key="frame" x="162" y="49" width="364" height="30"/>
@@ -1346,6 +1349,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ei5-B6-Ssi" id="VAE-XY-M9g"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVh-i1-CZr">
                                 <rect key="frame" x="541" y="52" width="24" height="24"/>
@@ -1368,6 +1374,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Ei5-B6-Ssi" id="1XF-cq-9qa"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYW-tc-px5">
                                 <rect key="frame" x="541" y="113" width="24" height="24"/>
@@ -1441,6 +1450,9 @@
                                 <rect key="frame" x="166" y="103" width="414" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4PF-tg-UlM" id="rST-EF-XNz"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KB6-lL-26u">
                                 <rect key="frame" x="31" y="177" width="118" height="21"/>
@@ -1480,6 +1492,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4PF-tg-UlM" id="c2z-rj-gnf"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keywords" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sc3-H1-RxX">
                                 <rect key="frame" x="31" y="472" width="118" height="21"/>
@@ -1498,6 +1513,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4PF-tg-UlM" id="oez-Yb-ulC"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doc Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UF8-1e-gbC">
                                 <rect key="frame" x="31" y="107" width="103" height="21"/>
@@ -1516,6 +1534,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4PF-tg-UlM" id="87t-EY-EWe"/>
+                                </connections>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HKz-7Y-yG2">
                                 <rect key="frame" x="166" y="172" width="378" height="30"/>
@@ -1524,6 +1545,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="4PF-tg-UlM" id="43b-Of-pkp"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Slk-2I-dop">
                                 <rect key="frame" x="560" y="175" width="24" height="24"/>
@@ -1592,7 +1616,7 @@
                         <outlet property="docNamelabel" destination="VlW-Te-IXf" id="JnS-Xc-J1T"/>
                         <outlet property="keywordsField" destination="74q-Yj-CxR" id="drV-Jn-Gdi"/>
                         <outlet property="purposeField" destination="yO5-p9-dsl" id="adm-d7-Gyl"/>
-                        <outlet property="uploadDocField" destination="HKz-7Y-yG2" id="0A0-XC-IAj"/>
+                        <outlet property="uploadDocField" destination="HKz-7Y-yG2" id="OKi-Cp-cCH"/>
                         <outlet property="uploadDocSearchButton" destination="Slk-2I-dop" id="P33-5Q-Lqh"/>
                     </connections>
                 </viewController>
@@ -1787,6 +1811,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wYy-T0-Zjk" id="byl-XN-rCL"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xcu-hE-soz">
                                 <rect key="frame" x="20" y="126" width="123" height="21"/>
@@ -1805,6 +1832,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wYy-T0-Zjk" id="Ku5-ls-0l0"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zs-PF-0Tc">
                                 <rect key="frame" x="20" y="193" width="118" height="20.5"/>
@@ -1822,6 +1852,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wYy-T0-Zjk" id="Yer-sq-pZ5"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHi-Jw-vly">
                                 <rect key="frame" x="556" y="183" width="24" height="24"/>
@@ -1862,6 +1895,8 @@
                     <connections>
                         <outlet property="actionField" destination="C3h-n6-hai" id="VSF-BI-poA"/>
                         <outlet property="actionSearchButton" destination="KHi-Jw-vly" id="V3R-8V-4wz"/>
+                        <outlet property="stageNameField" destination="s4c-H3-8wS" id="1NX-Je-jCy"/>
+                        <outlet property="stageUsers" destination="U7M-3y-zuY" id="voX-Tn-BDY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zC6-wi-t34" userLabel="First Responder" sceneMemberID="firstResponder"/>

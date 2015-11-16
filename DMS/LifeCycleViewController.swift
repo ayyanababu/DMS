@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LifeCycleViewController: UIViewController, TableHelperDelegate {
+class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFieldDelegate {
     
     
     struct storyboardconstants{
@@ -48,6 +48,17 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate {
         print(date1)
         
         
+    }
+    
+    
+    
+    //MARK: -TextFieldDelegate Methods
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        print(self.lifeCycleNameField.text)
+        print(self.categoryNameField.text)
+        print(self.reviewScheduleLabel.text)
     }
     
     

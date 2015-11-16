@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StageViewController: UIViewController, TableHelperDelegate {
+class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDelegate {
     
     struct storyboardconstants {
         static var ACTION_SEGUE = "actionsegue"
@@ -18,6 +18,8 @@ class StageViewController: UIViewController, TableHelperDelegate {
     var actionSelected: String?
     @IBOutlet weak var actionSearchButton: UIButton!
     @IBOutlet weak var actionField: UITextField!
+    @IBOutlet weak var stageNameField: UITextField!
+    @IBOutlet weak var stageUsers: UITextField!
     
     
     override func viewDidLoad() {
@@ -53,6 +55,16 @@ class StageViewController: UIViewController, TableHelperDelegate {
         self.actionField.text = selectedValue
         dismissViewControllerAnimated(false, completion: nil)
         
+    }
+    
+    
+    //MARK: -TextFieldDelegate Methods
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        print(self.actionField.text)
+        print(self.stageNameField.text)
+        print(self.stageUsers.text)
     }
 
    

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DocProfileViewController: UIViewController, TableHelperDelegate {
+class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFieldDelegate, UITextViewDelegate {
     
     
     struct storyBoardConstants{
@@ -23,11 +23,9 @@ class DocProfileViewController: UIViewController, TableHelperDelegate {
     @IBOutlet weak var purposeField: UITextField!
     @IBOutlet weak var keywordsField: UITextField!
     @IBOutlet weak var uploadDocSearchButton: UIButton!
-    
-    //uploaddoc
-    
     @IBOutlet weak var uploadDocField: UITextField!
     
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +34,20 @@ class DocProfileViewController: UIViewController, TableHelperDelegate {
         docDescriptionTextView.layer.cornerRadius = 5.0
         docDescriptionTextView.clipsToBounds = true
         
+    }
+    
+    //MARK: -TextFieldDelegate Methods
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        
+        print(self.docNamelabel.text)
+        print(self.purposeField.text)
+        print(self.keywordsField.text)
+        print(self.uploadDocField.text)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        print(self.docDescriptionTextView.text)
     }
     
 

@@ -127,7 +127,7 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         
     }
     
-    
+
     
     
     //MARK: SegueActions
@@ -136,9 +136,16 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
             
         }
         
-        else if segue.identifier == "newform"{
+        else if segue.identifier == "newform"
+        {
+            let navcontroller = segue.destinationViewController as? UINavigationController
+            if let controller = navcontroller?.topViewController as? FormViewController
+            {
+                controller.docTitle = "New Document"
+            }
             
-        }else if segue.identifier == "docviewer"
+        }
+        else if segue.identifier == "docviewer"
         {
             if let superviewcell = sender as? DetailTableViewCell
             {
