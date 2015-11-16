@@ -13,5 +13,4 @@ class Utility{
     
     static let userDefaults = NSUserDefaults.standardUserDefaults()
     
-    static func saveNewFormDetails
 }
