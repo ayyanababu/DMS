@@ -1380,7 +1380,7 @@
                                 </state>
                                 <connections>
                                     <action selector="categoryAction:" destination="Ei5-B6-Ssi" eventType="touchUpInside" id="Qf4-CY-yfb"/>
-                                    <segue destination="aWz-gt-cY7" kind="presentation" modalPresentationStyle="formSheet" id="2iA-NS-Hbk"/>
+                                    <segue destination="aWz-gt-cY7" kind="presentation" identifier="categorysegue" modalPresentationStyle="formSheet" id="2iA-NS-Hbk"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1413,8 +1413,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryNameField" destination="Erx-HV-Ux4" id="gPf-R6-RtY"/>
                         <outlet property="categorySearchButton" destination="sYW-tc-px5" id="Jel-y3-UzR"/>
                         <outlet property="datePicker" destination="eWb-KJ-Wf8" id="Npj-Ud-SqM"/>
+                        <outlet property="lifeCycleNameField" destination="ico-iy-IXG" id="4z5-tI-tMg"/>
                         <outlet property="lifeCycleSearchButton" destination="GVh-i1-CZr" id="PnX-UH-UJb"/>
                         <outlet property="reviewScheduleLabel" destination="hkW-kx-t2N" id="BWC-Ai-Zz4"/>
                     </connections>
@@ -1435,12 +1437,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9i-vP-74h">
-                                <rect key="frame" x="31" y="31" width="148" height="31"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VlW-Te-IXf">
                                 <rect key="frame" x="166" y="103" width="414" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1495,6 +1491,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="74q-Yj-CxR">
+                                <rect key="frame" x="166" y="467" width="414" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vOV-6b-sYg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Doc Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UF8-1e-gbC">
                                 <rect key="frame" x="31" y="107" width="103" height="21"/>
                                 <constraints>
@@ -1535,14 +1539,12 @@
                                     <segue destination="aWz-gt-cY7" kind="presentation" identifier="uploaddocsearchseague" modalPresentationStyle="formSheet" id="x7z-lE-LlY"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="74q-Yj-CxR">
-                                <rect key="frame" x="166" y="467" width="414" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="vOV-6b-sYg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Document Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9i-vP-74h">
+                                <rect key="frame" x="20" y="28" width="189" height="31"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1556,7 +1558,7 @@
                             <constraint firstItem="yO5-p9-dsl" firstAttribute="trailing" secondItem="vjU-xO-dRk" secondAttribute="trailingMargin" id="DVd-mH-DTd"/>
                             <constraint firstItem="UF8-1e-gbC" firstAttribute="top" secondItem="vjU-xO-dRk" secondAttribute="top" constant="107" id="E3N-Gu-P0Z"/>
                             <constraint firstAttribute="trailing" secondItem="KB6-lL-26u" secondAttribute="trailing" constant="451" id="HGn-6P-cbO"/>
-                            <constraint firstItem="UF8-1e-gbC" firstAttribute="leading" secondItem="J9i-vP-74h" secondAttribute="leading" id="I8K-hx-lSs"/>
+                            <constraint firstItem="UF8-1e-gbC" firstAttribute="leading" secondItem="J9i-vP-74h" secondAttribute="leading" constant="11" id="I8K-hx-lSs"/>
                             <constraint firstItem="yO5-p9-dsl" firstAttribute="centerY" secondItem="dBn-c3-1Ui" secondAttribute="centerY" id="JOi-LC-Z0K"/>
                             <constraint firstItem="UF8-1e-gbC" firstAttribute="leading" secondItem="VlW-Te-IXf" secondAttribute="leading" constant="-135" id="JXr-tK-faJ"/>
                             <constraint firstItem="KB6-lL-26u" firstAttribute="leading" secondItem="vjU-xO-dRk" secondAttribute="leading" constant="31" id="Peg-gs-8xb"/>
@@ -1573,7 +1575,7 @@
                             <constraint firstItem="VlW-Te-IXf" firstAttribute="top" secondItem="UF8-1e-gbC" secondAttribute="bottom" constant="-25" id="fEm-Lz-i3c"/>
                             <constraint firstItem="74q-Yj-CxR" firstAttribute="top" secondItem="yO5-p9-dsl" secondAttribute="bottom" constant="47" id="hAK-PK-EJY"/>
                             <constraint firstItem="HKz-7Y-yG2" firstAttribute="leading" secondItem="KB6-lL-26u" secondAttribute="trailing" constant="17" id="iLm-4F-Wkw"/>
-                            <constraint firstItem="UF8-1e-gbC" firstAttribute="top" secondItem="J9i-vP-74h" secondAttribute="bottom" constant="45.5" id="ikf-qH-qqE"/>
+                            <constraint firstItem="UF8-1e-gbC" firstAttribute="top" secondItem="J9i-vP-74h" secondAttribute="bottom" constant="48" id="ikf-qH-qqE"/>
                             <constraint firstItem="WpT-Ck-JjC" firstAttribute="top" secondItem="KB6-lL-26u" secondAttribute="bottom" constant="82" id="kNO-Ak-6wA"/>
                             <constraint firstItem="Slk-2I-dop" firstAttribute="top" secondItem="VlW-Te-IXf" secondAttribute="bottom" constant="42" id="l9S-Fa-k2F"/>
                             <constraint firstItem="KB6-lL-26u" firstAttribute="top" secondItem="VlW-Te-IXf" secondAttribute="bottom" constant="44" id="olx-wj-lAT"/>
@@ -1590,6 +1592,7 @@
                         <outlet property="docNamelabel" destination="VlW-Te-IXf" id="JnS-Xc-J1T"/>
                         <outlet property="keywordsField" destination="74q-Yj-CxR" id="drV-Jn-Gdi"/>
                         <outlet property="purposeField" destination="yO5-p9-dsl" id="adm-d7-Gyl"/>
+                        <outlet property="uploadDocField" destination="HKz-7Y-yG2" id="0A0-XC-IAj"/>
                         <outlet property="uploadDocSearchButton" destination="Slk-2I-dop" id="P33-5Q-Lqh"/>
                     </connections>
                 </viewController>
@@ -1597,17 +1600,22 @@
             </objects>
             <point key="canvasLocation" x="4470" y="1199"/>
         </scene>
-        <!--Table Helper View Controller-->
+        <!--TableHelper-->
         <scene sceneID="NpC-T4-4nb">
             <objects>
                 <tableViewController id="86i-1g-Baa" customClass="TableHelperViewController" customModule="DMS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="215-iR-fjw">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="215-iR-fjw">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="WjL-2z-CwS">
+                            <rect key="frame" x="0.0" y="116" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="helpercell" textLabel="IuY-xY-Ith" style="IBUITableViewCellStyleDefault" id="wle-BQ-yki">
-                                <rect key="frame" x="0.0" y="93.5" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wle-BQ-yki" id="d2c-19-gGB">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -1629,7 +1637,17 @@
                             <outlet property="delegate" destination="86i-1g-Baa" id="AyL-C9-Fuc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="hwh-XI-fdc"/>
+                    <navigationItem key="navigationItem" title="TableHelper" id="hwh-XI-fdc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="KoQ-lr-Bmu">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="clickedOnDone:" destination="86i-1g-Baa" id="PeF-hC-PR3"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="KoQ-lr-Bmu" id="Hs3-TS-0ry"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O7u-9t-9Dp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1842,6 +1860,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="actionField" destination="C3h-n6-hai" id="VSF-BI-poA"/>
                         <outlet property="actionSearchButton" destination="KHi-Jw-vly" id="V3R-8V-4wz"/>
                     </connections>
                 </viewController>
@@ -1880,6 +1899,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.31764705879999999" green="0.70588235290000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1888,7 +1910,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNr-FK-TOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5866" y="996"/>
+            <point key="canvasLocation" x="5822" y="996"/>
         </scene>
     </scenes>
     <resources>
@@ -1905,6 +1927,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="U8g-Qi-aSg"/>
         <segue reference="WA6-aL-llc"/>
-        <segue reference="x7z-lE-LlY"/>
+        <segue reference="Vzb-uN-rbm"/>
     </inferredMetricsTieBreakers>
 </document>

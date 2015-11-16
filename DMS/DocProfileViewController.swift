@@ -8,12 +8,13 @@
 
 import UIKit
 
-class DocProfileViewController: UIViewController {
+class DocProfileViewController: UIViewController, TableHelperDelegate {
     
     
     struct storyBoardConstants{
         
         static var UPLOAD_DOC_SEGUE = "uploaddocsearchseague"
+        static var UPLOAD_TITLE = "Documents"
     }
     
     
@@ -22,6 +23,10 @@ class DocProfileViewController: UIViewController {
     @IBOutlet weak var purposeField: UITextField!
     @IBOutlet weak var keywordsField: UITextField!
     @IBOutlet weak var uploadDocSearchButton: UIButton!
+    
+    //uploaddoc
+    
+    @IBOutlet weak var uploadDocField: UITextField!
     
     
     override func viewDidLoad() {
@@ -33,7 +38,8 @@ class DocProfileViewController: UIViewController {
         
     }
     
-   
+
+    
     //MARK: SearchActions
     
     @IBAction func upLoadDocSearchAction(sender: UIButton) {
@@ -42,6 +48,32 @@ class DocProfileViewController: UIViewController {
     }
     
     
+    //MARK: -Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navcontroller = segue.destinationViewController as? UINavigationController
+        
+        if segue.identifier == storyBoardConstants.UPLOAD_DOC_SEGUE
+        {
+            if let controller = navcontroller?.topViewController as? TableHelperViewController{
+                controller.delegate = self
+                
+                controller.navTitle = storyBoardConstants.UPLOAD_TITLE
+                let array: [String] = ["Doc1","Doc2","Doc3","Doc4","Doc5"]
+                controller.tableHelperData = array
+            }
+            
+        }
+    }
+    
+    //MARK: TableHelperDelegate
+    
+    func doneSelectingACell(selectedValue: String) {
+        print("selected value \(selectedValue)")
+        
+        uploadDocField.text = selectedValue
+        dismissViewControllerAnimated(false, completion: nil)
+        
+    }
     
     
 }

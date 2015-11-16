@@ -22,6 +22,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     var delegate: LoginViewControllerDelegate?
+    var userDefaults = NSUserDefaults.standardUserDefaults()
     
     
     override func viewDidLoad() {
@@ -66,6 +67,10 @@ class LoginViewController: UIViewController {
             if self.userNameField.text == persistedUsername && self.passwordField.text == persistedPassword{
                 
                 resignFirstResponder()
+                //Save the id in userdefaults
+                let userid = filteredResult.valueForKey("Id") as? Int
+                userDefaults.setObject(userid, forKey: "userid")
+                
                 delegate?.didLoginSuccessfully()
             }else{
                 showLogiAlert()

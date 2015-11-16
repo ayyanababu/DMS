@@ -125,7 +125,6 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         
         print("clicked on each cell")
         
-        
     }
     
     

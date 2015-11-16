@@ -50,6 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
             }
             
         }else{
+            
+            
+            
             if let mainboard = storyBoard{
                 window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 let splitcontroller = mainboard.instantiateViewControllerWithIdentifier("splitcontroller")
