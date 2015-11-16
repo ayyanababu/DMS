@@ -12,6 +12,12 @@ class InfoTableViewController: UITableViewController {
     
     
     
+    @IBOutlet weak var upversion: UIButton!
+    @IBOutlet weak var obseleteButton: UIButton!
+    @IBOutlet weak var deletebutton: UIButton!
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,16 +40,6 @@ class InfoTableViewController: UITableViewController {
         return 10
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-    
     
     //MARK: DoneButton
     
@@ -51,6 +47,15 @@ class InfoTableViewController: UITableViewController {
         
         self.dismissViewControllerAnimated(false, completion: nil)
     }
+    
+    
+    @IBAction func upVersionForm(sender: UIButton) {
+        
+        
+    }
+    
+    
+    
     
 
    

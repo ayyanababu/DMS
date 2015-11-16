@@ -8,38 +8,26 @@
 
 import UIKit
 
-class StageViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class StageViewController: UIViewController {
+    
+    struct storyboardconstants {
+        static var ACTION_SEGUE = "actionsegue"
+    }
 
-    var actions: [String] = ["Action" ,"Action1","Action2"]
     var actionSelected: String?
+    @IBOutlet weak var actionSearchButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+    @IBAction func actionSearchClick(sender: UIButton) {
+        print("clicked on action search on stage view controller")
     }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return actions.count
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return actions[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let actionselected = actions[row]
-        self.actionSelected = actionselected
-        print(self.actionSelected)
-    }
-
+   
 }

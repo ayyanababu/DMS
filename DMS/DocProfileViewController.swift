@@ -8,20 +8,22 @@
 
 import UIKit
 
-class DocProfileViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class DocProfileViewController: UIViewController {
+    
+    
+    struct storyBoardConstants{
+        
+        static var UPLOAD_DOC_SEGUE = "uploaddocsearchseague"
+    }
     
     
     @IBOutlet weak var docNamelabel: UITextField!
     @IBOutlet weak var docDescriptionTextView: UITextView!
     @IBOutlet weak var purposeField: UITextField!
     @IBOutlet weak var keywordsField: UITextField!
-    @IBOutlet weak var uploadPicker: UIPickerView!
+    @IBOutlet weak var uploadDocSearchButton: UIButton!
     
     
-    
-    var documents: [String] = ["financedocument.pdf" ,"BudgetDocument.pdf","employesdata.pdf"]
-    var documentSelected: String?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         docDescriptionTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
@@ -29,37 +31,17 @@ class DocProfileViewController: UIViewController, UIPickerViewDelegate, UIPicker
         docDescriptionTextView.layer.cornerRadius = 5.0
         docDescriptionTextView.clipsToBounds = true
         
-        
-        uploadPicker.layer.borderColor = UIColor.lightGrayColor().CGColor
-        uploadPicker.layer.cornerRadius = 5.0
-        uploadPicker.layer.borderWidth = 0.5
-        uploadPicker.clipsToBounds = true
-        
-        
-        
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+   
+    //MARK: SearchActions
+    
+    @IBAction func upLoadDocSearchAction(sender: UIButton) {
+        
+        print("clicked on upload doc search action button")
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return documents.count
-    }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return documents[row]
-    }
-
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let docSelected = documents[row]
-        documentSelected = docSelected
-        print(documentSelected)
-    }
-
+    
+    
 }

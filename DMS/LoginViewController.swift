@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 
 protocol LoginViewControllerDelegate {
@@ -14,7 +15,7 @@ protocol LoginViewControllerDelegate {
 }
 
 class LoginViewController: UIViewController {
-
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var userNameField: UITextField!
@@ -50,21 +51,45 @@ class LoginViewController: UIViewController {
     //MARK: -LoginACtion
     
     @IBAction func loginAction(sender: UIButton) {
-        if self.userNameField.text == "metricstream" && self.passwordField.text == "12345678" {
-            resignFirstResponder()
-            delegate?.didLoginSuccessfully()
-        }else {
-            let alertController = UIAlertController(title: "Error!", message: "The username and password combination failed.", preferredStyle: .Alert)
-            let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
-            })
-            alertController.addAction(ok)
-            presentViewController(alertController, animated: true, completion: nil)
+        
+        let results = DataPersistence.getDataFromTableWithFilter("Users", filterParameter: self.userNameField.text!)
+        
+        
+        if results.count > 0
+        {
+            
+            let filteredResult: NSManagedObject  = results[0]
+        
+            let persistedUsername: String  = filteredResult.valueForKey("username") as! String
+            let persistedPassword: String  = filteredResult.valueForKey("password") as! String
+            
+            if self.userNameField.text == persistedUsername && self.passwordField.text == persistedPassword{
+                
+                resignFirstResponder()
+                delegate?.didLoginSuccessfully()
+            }else{
+                showLogiAlert()
+            }
+            
+            
+            
+        }else{
+            showLogiAlert()
         }
         
+      
     }
-
-
-
+    
+    
+    func showLogiAlert(){
+        let alertController = UIAlertController(title: "Error!", message: "The username and password combination failed.", preferredStyle: .Alert)
+        let ok = UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        })
+        alertController.addAction(ok)
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
 }
 
 
