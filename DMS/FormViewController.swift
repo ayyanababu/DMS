@@ -10,10 +10,7 @@ import UIKit
 
 class FormViewController: UIViewController {
     
-    
-  
-    
-    
+
     @IBOutlet weak var sectionAButton: UIButton!
     @IBOutlet weak var sectionBButton: UIButton!
     @IBOutlet weak var sectionCButton: UIButton!
@@ -24,6 +21,10 @@ class FormViewController: UIViewController {
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     
     var docTitle: String?
+    
+    //current container view in rightside view
+    var docContainerController: UIViewController?
+    
     
     
     var sectionButtons = [UIButton]()
@@ -64,6 +65,8 @@ class FormViewController: UIViewController {
         
         let senderButton = sender as UIButton
         
+        self.docContainerController?.removeFromParentViewController()
+        
         for eachButton in sectionButtons{
             if eachButton.tag == senderButton.tag{
                 
@@ -79,6 +82,8 @@ class FormViewController: UIViewController {
                 eachButton.setImage(buttonImage, forState: UIControlState.Normal)
                 eachButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
                 let controllername = controllerClasses[eachButton.tag]
+                
+                
                 self.loadDocProfileController(controllername!)
                 
                 
@@ -93,10 +98,9 @@ class FormViewController: UIViewController {
                 eachButton.backgroundColor = UIColor(red: 32/255, green: 173/255, blue: 82/255, alpha: 1.0)
                 eachButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
                 
+                
             }
         }
-        
-        
         
         
     }
@@ -109,29 +113,24 @@ class FormViewController: UIViewController {
         storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if let mainboard = storyBoard{
             
-            let docProfileController: UIViewController
             if controllerName == "docprofile"{
-                docProfileController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
+                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
             }else if controllerName == "lifecycle"{
-                docProfileController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? LifeCycleViewController)!
+                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? LifeCycleViewController)!
             }else if controllerName == "author"{
-                docProfileController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? AuthorViewController)!
+                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? AuthorViewController)!
             }else if controllerName == "stage"{
-                docProfileController =  (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? StageViewController)!
+                self.docContainerController =  (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? StageViewController)!
             }else{
-                docProfileController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
+                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
             }
-                
             
+            self.docContainerController!.view.frame = CGRectMake(0, 0, self.containerVeiw.frame.size.width, self.containerVeiw.frame.size.height);
 
-            
-            print("container view frame = \(self.containerVeiw.frame)")
-            docProfileController.view.frame = CGRectMake(0, 0, self.containerVeiw.frame.size.width, self.containerVeiw.frame.size.height);
-
-            docProfileController.willMoveToParentViewController(self)
-            self.containerVeiw.addSubview(docProfileController.view)
-            self.addChildViewController(docProfileController)
-            docProfileController.didMoveToParentViewController(self)
+            self.docContainerController!.willMoveToParentViewController(self)
+            self.containerVeiw.addSubview(self.docContainerController!.view)
+            self.addChildViewController(self.docContainerController!)
+            self.docContainerController!.didMoveToParentViewController(self)
             
             
         }
