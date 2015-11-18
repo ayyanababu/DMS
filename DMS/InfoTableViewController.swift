@@ -17,10 +17,42 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var deletebutton: UIButton!
     
     
+    @IBOutlet weak var docNameLabel: UILabel!
+    @IBOutlet weak var docAttachmentlabel: UILabel!
+    @IBOutlet weak var docVersionLabel: UILabel!
+    @IBOutlet weak var docStatuslabel: UILabel!
+    @IBOutlet weak var docNumber: UILabel!
+    @IBOutlet weak var docAuthorLabel: UILabel!
+    @IBOutlet weak var docOwnerLabel: UILabel!
+    @IBOutlet weak var docNextReviewDate: UILabel!
+    @IBOutlet weak var lifecyclenamelabel: UILabel!
+    @IBOutlet weak var categoryName: UILabel!
+    
+    var docInfo: ProductionDocuments?
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(self.docInfo)
+        self.docNameLabel.text = self.docInfo?.docname
+        self.docAttachmentlabel.text = ""
+        self.docVersionLabel.text = self.docInfo?.docversion
+        self.docStatuslabel.text = self.docInfo?.docversion
+        self.docNumber.text = "1"
+        self.docAuthorLabel.text = self.docInfo?.docowner
+        self.docOwnerLabel.text = self.docInfo?.docowner
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/YYYY"
+        let nextreviewdatestring = dateFormatter.stringFromDate((self.docInfo?.docnextreviewdate)!)
+        self.docNextReviewDate.text = nextreviewdatestring
+        
+        self.lifecyclenamelabel.text = self.docInfo?.lifecycle
+        self.categoryName.text = self.docInfo?.categoryname
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

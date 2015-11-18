@@ -1,26 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F1021" minimumToolsVersion="Automatic">
-    <entity name="Documents" syncable="YES">
-        <attribute name="docassigneduser" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="doccreatedat" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="docdescription" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="docid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="doclastmodified" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="docname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="docowner" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="doctype" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    <entity name="AccessGroup" representedClassName=".AccessGroup" syncable="YES">
+        <attribute name="accessgroupname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="acessgroupid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Users" representedClassName="" syncable="YES">
+    <entity name="Category" representedClassName=".Category" syncable="YES">
+        <attribute name="categoryid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryname" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LifeCycle" representedClassName=".LifeCycle" syncable="YES">
+        <attribute name="lifecycleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecyclename" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Lifecycle_Category" representedClassName=".Lifecycle_Category" syncable="YES">
+        <attribute name="categoryid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecycleid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LifeCycle_Stages" representedClassName=".LifeCycle_Stages" syncable="YES">
+        <attribute name="lifecycleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stagename" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ProductionDocuments" representedClassName=".ProductionDocuments" syncable="YES">
+        <attribute name="categoryname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docattachment" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="doccreationdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="docdescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doceffectivedate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="docid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docnextreviewdate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="docowner" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docstatus" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docversion" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecycle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="userslist" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Users" inverseName="documentslist" inverseEntity="Users" syncable="YES"/>
+    </entity>
+    <entity name="RoutingDetails" representedClassName=".RoutingDetails" syncable="YES">
+        <attribute name="actionname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecycleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecyclename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="routingstageid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="routingstagename" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stagename" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Stages_AccessGroup" representedClassName=".Stages_AccessGroup" syncable="YES">
+        <attribute name="accessgroupid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accessgroupname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lifecycleid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stagename" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Users" representedClassName=".Users" syncable="YES">
         <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="role" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="documentslist" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ProductionDocuments" inverseName="userslist" inverseEntity="ProductionDocuments" syncable="YES"/>
+    </entity>
+    <entity name="Users_AccessGroup" representedClassName=".Users_AccessGroup" syncable="YES">
+        <attribute name="accessgroupid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="accessgroupname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Users_Documents" representedClassName=".Users_Documents" syncable="YES">
+        <attribute name="docid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Users" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="Documents" positionX="-54" positionY="36" width="128" height="180"/>
+        <element name="AccessGroup" positionX="0" positionY="117" width="128" height="75"/>
+        <element name="Category" positionX="-333" positionY="231" width="128" height="75"/>
+        <element name="LifeCycle" positionX="16" positionY="213" width="128" height="75"/>
+        <element name="Lifecycle_Category" positionX="-153" positionY="198" width="128" height="90"/>
+        <element name="LifeCycle_Stages" positionX="-36" positionY="-9" width="128" height="90"/>
+        <element name="ProductionDocuments" positionX="-81" positionY="-306" width="128" height="253"/>
+        <element name="RoutingDetails" positionX="88" positionY="-90" width="128" height="150"/>
+        <element name="Stages_AccessGroup" positionX="-216" positionY="9" width="128" height="120"/>
+        <element name="Users" positionX="-405" positionY="-261" width="128" height="148"/>
+        <element name="Users_AccessGroup" positionX="-398" positionY="72" width="128" height="105"/>
+        <element name="Users_Documents" positionX="-396" positionY="-72" width="128" height="90"/>
     </elements>
 </model>

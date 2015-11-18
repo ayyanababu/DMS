@@ -12,6 +12,16 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelegate {
     
+    
+    /*var todaysDate:NSDate = NSDate()
+    var dateFormatter:NSDateFormatter = NSDateFormatter()
+    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
+    var DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
+    dateFormatter.
+    
+    print(DateInFormat)*/
+    
+    
     var window: UIWindow?
     var loggedIn: Bool = false {
         didSet {
@@ -22,10 +32,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
     }
     
     var listOfUsers = [NSManagedObject]()
+   
+    
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
     {
        
+        //InsertSampleData
+        DataPersistence.insertUsersSampleData()
+        DataPersistence.insertProductionDocsSampleData()
+        DataPersistence.insertRoutingTableData()
+        DataPersistence.insertUserAccessGroupData()
+        DataPersistence.insertAccessGroupData()
+        DataPersistence.insertStageAccessGroupData()
+        DataPersistence.insertLifecycleAndStagesData()
+        DataPersistence.insertLifeCycleAndCategorySampleData()
+        DataPersistence.insertLifeCycleSampleData()
+        DataPersistence.insertCategorySampleData()
+        DataPersistence.insertStageAccessGroupData()
+        
         loadRootViewController()
         
         return true

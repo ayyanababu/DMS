@@ -14,16 +14,33 @@ class DetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellActionButton: UIButton!
     @IBOutlet weak var detailCellImageView: UIImageView!
+    @IBOutlet weak var docNameLabel: UILabel!
+    @IBOutlet weak var docDescriptionLabel: UILabel!
+    @IBOutlet weak var docEffectiveDateLabel: UILabel!
     
-    func configureVeiw(){
+    
+    
+    
+    
+    
+    
+    
+    func configureVeiw(document: ProductionDocuments){
         self.detailCellImageView.layer.cornerRadius = self.detailCellImageView.frame.size.width / 2
         self.detailCellImageView.clipsToBounds = true
         self.detailCellImageView.layer.borderWidth = 1.0
         self.detailCellImageView.layer.borderColor = UIColor(red: 32/255, green: 173/255, blue: 82/255, alpha: 1.0).CGColor
-       // self.detailCellImageView.layer.borderColor = UIColor(red: 0/255, green: 0/255, blue: 111/255, alpha: 1.0).CGColor
 
 
-    }
+        self.docNameLabel.text = document.docname
+        self.docDescriptionLabel.text = document.docdescription
+        
+        
+        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let effectiveDate = dateFormatter.stringFromDate(document.doceffectivedate!)
+        
+        self.docEffectiveDateLabel.text = effectiveDate    }
     
 
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class FormViewController: UIViewController {
     
-
+    
     @IBOutlet weak var sectionAButton: UIButton!
     @IBOutlet weak var sectionBButton: UIButton!
     @IBOutlet weak var sectionCButton: UIButton!
@@ -29,6 +29,7 @@ class FormViewController: UIViewController {
     
     var sectionButtons = [UIButton]()
     var controllerClasses = [Int: String]()
+    var profileControllers = [UIViewController]()
     
     
     override func viewDidLoad() {
@@ -38,7 +39,7 @@ class FormViewController: UIViewController {
         sectionBButton.tag = 1002
         sectionCButton.tag = 1003
         sectionDButton.tag = 1004
-
+        
         self.containerVeiw.backgroundColor = UIColor.lightGrayColor()
         
         sectionButtons.append(sectionAButton)
@@ -50,8 +51,8 @@ class FormViewController: UIViewController {
         controllerClasses[1002] = "lifecycle"
         controllerClasses[1003] = "author"
         controllerClasses[1004] = "stage"
-
-    
+        
+        
         self.sectionButtonClicks(sectionAButton)
         self.navigationItem.title = docTitle
         
@@ -93,7 +94,7 @@ class FormViewController: UIViewController {
                 let image  = "\(eachButton.tag)white48"
                 let buttonImage = UIImage(named: image)
                 eachButton.layer.shadowOpacity = 0.0
-
+                
                 eachButton.setImage(buttonImage, forState: UIControlState.Normal)
                 eachButton.backgroundColor = UIColor(red: 32/255, green: 173/255, blue: 82/255, alpha: 1.0)
                 eachButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -115,18 +116,41 @@ class FormViewController: UIViewController {
             
             if controllerName == "docprofile"{
                 self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
+                
+                if !self.profileControllers.contains(self.docContainerController!){
+                   // self.profileControllers.append(self.docContainerController!)
+                }
+                
             }else if controllerName == "lifecycle"{
+                
                 self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? LifeCycleViewController)!
+                if !self.profileControllers.contains(self.docContainerController!){
+                    //self.profileControllers.append(self.docContainerController!)
+                }
+                
             }else if controllerName == "author"{
                 self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? AuthorViewController)!
+                if !self.profileControllers.contains(self.docContainerController!){
+                   // self.profileControllers.append(self.docContainerController!)
+                }
+                
             }else if controllerName == "stage"{
                 self.docContainerController =  (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? StageViewController)!
+                if !self.profileControllers.contains(self.docContainerController!){
+                   // self.profileControllers.append(self.docContainerController!)
+                }
+                
             }else{
                 self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
+                if !self.profileControllers.contains(self.docContainerController!){
+                   // self.profileControllers.append(self.docContainerController!)
+                }
+                
             }
             
+            
+            
             self.docContainerController!.view.frame = CGRectMake(0, 0, self.containerVeiw.frame.size.width, self.containerVeiw.frame.size.height);
-
             self.docContainerController!.willMoveToParentViewController(self)
             self.containerVeiw.addSubview(self.docContainerController!.view)
             self.addChildViewController(self.docContainerController!)
@@ -136,8 +160,14 @@ class FormViewController: UIViewController {
         }
     }
     
-    
     @IBAction func saveForm(sender: UIBarButtonItem) {
+        
+        
+        //while saving a form we have to do below steps
+        
+        // we have to save this form based on usergorups  into userdocs table
+        
+        
         
         self.dismissViewControllerAnimated(false, completion: nil)
         

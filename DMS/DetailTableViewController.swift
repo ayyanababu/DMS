@@ -16,11 +16,17 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet weak var createFromButton: UIBarButtonItem!
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var infoPencilButton: UIButton!
+    var docList: [ProductionDocuments]?
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       /* let loggedInUser = NSUserDefaults.standardUserDefaults().objectForKey("loggedinusername") as? String */
+        let documentsList = DataPersistence.getDataFromTableAsList("ProductionDocuments") as? [ProductionDocuments]
+        self.docList = documentsList
+        
 
     }
 
@@ -36,7 +42,7 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.docList!.count
     }
 
     
@@ -48,7 +54,8 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         }else{
             cell?.detailCellImageView.image = UIImage(named: "wordicon.png")
         }
-        cell?.configureVeiw()
+        
+        cell?.configureVeiw(self.docList![indexPath.row])
         return cell!
     }
     
@@ -124,6 +131,9 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     @IBAction func infoAndActionsClick(sender: UIButton) {
         
         print("clicked on each cell")
+        performSegueWithIdentifier("showinfoactions", sender: sender)
+        
+        
         
     }
     
@@ -155,9 +165,23 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
                 print(indexpath?.row)
             }
 
+        }else if segue.identifier == "showinfoactions"{
+            if let superviewcell = sender?.superview!!.superview! as? DetailTableViewCell{
+                let indexpath = self.tableView.indexPathForCell(superviewcell)
+                let navcontroller = segue.destinationViewController as? UINavigationController
+                if let controller = navcontroller?.topViewController as? InfoTableViewController{
+                    controller.docInfo = self.docList![indexpath!.row]
+                }
+                
+                print(indexpath?.row)
+            }
         }
         
         
     }
+    
+    
+    
+    
     
 }

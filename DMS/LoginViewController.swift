@@ -53,36 +53,33 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginAction(sender: UIButton) {
         
-        let results = DataPersistence.getDataFromTableWithFilter("Users", filterParameter: self.userNameField.text!)
+        //let results = DataPersistence.getDataFromTableWithFilter("Users", filterParameter: self.userNameField.text!)
+        //let results = DataPersistence.getUserDetails(self.userNameField.text!)
+        let results = DataPersistence.getDataFromTableWithFilter("Users", coloumnName: "username", filterParameters: [self.userNameField.text!])
         
         
-        if results.count > 0
-        {
-            
-            let filteredResult: NSManagedObject  = results[0]
+        if let userResults = results as? [Users]{
+            if let result = userResults.first{
+                print(result.username)
+                print(result.password)
+            }
+        }
         
-            let persistedUsername: String  = filteredResult.valueForKey("username") as! String
-            let persistedPassword: String  = filteredResult.valueForKey("password") as! String
-            
-            if self.userNameField.text == persistedUsername && self.passwordField.text == persistedPassword{
-                
+        
+        if let result = results.first as! Users!{
+            if result.username == self.userNameField.text && result.password == self.passwordField.text{
                 resignFirstResponder()
                 //Save the id in userdefaults
-                let userid = filteredResult.valueForKey("Id") as? Int
-                userDefaults.setObject(userid, forKey: "userid")
-                
+                let userid = result.id
+                userDefaults.setObject(userid, forKey: "loggedinuserid")
+                userDefaults.setObject(result.username, forKey: "loggedinusername")
                 delegate?.didLoginSuccessfully()
             }else{
                 showLogiAlert()
             }
-            
-            
-            
-        }else{
-            showLogiAlert()
+
         }
         
-      
     }
     
     

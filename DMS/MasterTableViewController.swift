@@ -11,14 +11,33 @@ import UIKit
 class MasterTableViewController: UITableViewController {
     
     
-    lazy var productLines: [ProductLine] = {
-        return ProductLine.productLines()
-        }()
-
+    var categoryLines = [CategoryLine]()
+    
+    func constructCategoryLines(){
+        
+        let categoryResults = DataPersistence.getDataFromTableAsList("Category")
+        
+        if let results = categoryResults as? [Category]{
+            
+            for eachCategory in results{
+                
+                let documents = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "categoryname", filterParameters: [eachCategory.categoryname!]) as? [ProductionDocuments]
+                
+                let categoryLine = CategoryLine(category: eachCategory, documents: documents!)
+                
+                categoryLines.append(categoryLine)
+                
+            }
+        }
+            
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Categories"
         tableView.tableFooterView = UIView(frame:CGRectZero)
+        self.constructCategoryLines()
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,13 +45,13 @@ class MasterTableViewController: UITableViewController {
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return productLines.count
+        return categoryLines.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let productLine = productLines[section]
-        return productLine.products.count
+        let productLine = categoryLines[section]
+        return productLine.documents!.count
         
     }
     
@@ -44,10 +63,10 @@ class MasterTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("mastercell", forIndexPath: indexPath)
-        let productLine = productLines[indexPath.section]
-        let product = productLine.products[indexPath.row]
+        let productLine = categoryLines[indexPath.section]
+        let document = productLine.documents![indexPath.row]
         
-        cell.textLabel?.text = product.title
+        cell.textLabel?.text = document.docname
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.blackColor()
@@ -77,8 +96,8 @@ class MasterTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let productLine = productLines[section]
-        return productLine.name
+        let productLine = categoryLines[section]
+        return productLine.category?.categoryname
     }
     
     override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
