@@ -14,8 +14,9 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var initiatorLabel: UITextField!
     @IBOutlet weak var authorLabel: UITextField!
     @IBOutlet weak var OwnerLabel: UITextField!
-    
-    
+    var isUpversionDoc: Bool?
+    var docInfo: ProductionDocuments?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

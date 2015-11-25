@@ -25,6 +25,10 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
     @IBOutlet weak var uploadDocSearchButton: UIButton!
     @IBOutlet weak var uploadDocField: UITextField!
     
+    var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
+    var docInfo: ProductionDocuments?
+
+   
 
     
     override func viewDidLoad() {
@@ -33,6 +37,19 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
         docDescriptionTextView.layer.borderWidth = 0.5
         docDescriptionTextView.layer.cornerRadius = 5.0
         docDescriptionTextView.clipsToBounds = true
+        
+        if isUpVersion{
+            print("isupversion")
+        }
+       
+        
+    }
+    
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
         
     }
     

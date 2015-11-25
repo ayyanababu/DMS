@@ -21,40 +21,39 @@ class FormViewController: UIViewController {
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
     
     var docTitle: String?
+    var docInfo: ProductionDocuments?
+
     
     //current container view in rightside view
     var docContainerController: UIViewController?
     
     
     
-    var sectionButtons = [UIButton]()
-    var controllerClasses = [Int: String]()
-    var profileControllers = [UIViewController]()
+    lazy var sectionButtons = [UIButton]()
+    lazy var profileControllers = [UIViewController]()
+    var isUpversionDoc: Bool = false
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sectionAButton.tag = 1001
-        sectionBButton.tag = 1002
-        sectionCButton.tag = 1003
-        sectionDButton.tag = 1004
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        if isUpversionDoc{
+            userdefaults.setBool(true, forKey: "isupversion")
+            print("upversiondoc")
+        }else{
+            userdefaults.setBool(false, forKey: "isupversion")
+            print("newform")
+            
+        }
         
-        self.containerVeiw.backgroundColor = UIColor.lightGrayColor()
-        
-        sectionButtons.append(sectionAButton)
-        sectionButtons.append(sectionBButton)
-        sectionButtons.append(sectionCButton)
-        sectionButtons.append(sectionDButton)
-        
-        controllerClasses[1001] = "docprofile"
-        controllerClasses[1002] = "lifecycle"
-        controllerClasses[1003] = "author"
-        controllerClasses[1004] = "stage"
-        
+    
+        self.prepareButtonsArray()
+        self.loadControllerArrays()
         
         self.sectionButtonClicks(sectionAButton)
         self.navigationItem.title = docTitle
+        
         
     }
     
@@ -82,10 +81,9 @@ class FormViewController: UIViewController {
                 let buttonImage = UIImage(named: image)
                 eachButton.setImage(buttonImage, forState: UIControlState.Normal)
                 eachButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
-                let controllername = controllerClasses[eachButton.tag]
                 
-                
-                self.loadDocProfileController(controllername!)
+                let index = senderButton.tag % 1000
+                self.loadControllerOnContainer(index)
                 
                 
                 
@@ -107,58 +105,65 @@ class FormViewController: UIViewController {
     }
     
     
-    func loadDocProfileController(controllerName: String){
+    //MARK: LoadingControllers
+    func loadControllerArrays(){
         
         
         let storyBoard: UIStoryboard?
         storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if let mainboard = storyBoard{
+            let docProfileController = (mainboard.instantiateViewControllerWithIdentifier("docprofile") as? DocProfileViewController)!
+            if isUpversionDoc{
+                docProfileController.docInfo = self.docInfo
+            }
+            let lifeCycleController = (mainboard.instantiateViewControllerWithIdentifier("lifecycle") as? LifeCycleViewController)!
+            if isUpversionDoc{
+                lifeCycleController.docInfo = self.docInfo
+            }
+            let authorController  = (mainboard.instantiateViewControllerWithIdentifier("author") as? AuthorViewController)!
+            if isUpversionDoc{
+                authorController.docInfo = self.docInfo
+            }
+            let stageController =  (mainboard.instantiateViewControllerWithIdentifier("stage") as? StageViewController)!
             
-            if controllerName == "docprofile"{
-                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
-                
-                if !self.profileControllers.contains(self.docContainerController!){
-                   // self.profileControllers.append(self.docContainerController!)
-                }
-                
-            }else if controllerName == "lifecycle"{
-                
-                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? LifeCycleViewController)!
-                if !self.profileControllers.contains(self.docContainerController!){
-                    //self.profileControllers.append(self.docContainerController!)
-                }
-                
-            }else if controllerName == "author"{
-                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? AuthorViewController)!
-                if !self.profileControllers.contains(self.docContainerController!){
-                   // self.profileControllers.append(self.docContainerController!)
-                }
-                
-            }else if controllerName == "stage"{
-                self.docContainerController =  (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? StageViewController)!
-                if !self.profileControllers.contains(self.docContainerController!){
-                   // self.profileControllers.append(self.docContainerController!)
-                }
-                
-            }else{
-                self.docContainerController = (mainboard.instantiateViewControllerWithIdentifier(controllerName) as? DocProfileViewController)!
-                if !self.profileControllers.contains(self.docContainerController!){
-                   // self.profileControllers.append(self.docContainerController!)
-                }
-                
+            if isUpversionDoc{
+                stageController.docInfo = self.docInfo
             }
             
-            
-            
-            self.docContainerController!.view.frame = CGRectMake(0, 0, self.containerVeiw.frame.size.width, self.containerVeiw.frame.size.height);
-            self.docContainerController!.willMoveToParentViewController(self)
-            self.containerVeiw.addSubview(self.docContainerController!.view)
-            self.addChildViewController(self.docContainerController!)
-            self.docContainerController!.didMoveToParentViewController(self)
-            
+            self.profileControllers.append(docProfileController)
+            self.profileControllers.append(lifeCycleController)
+            self.profileControllers.append(authorController)
+            self.profileControllers.append(stageController)
             
         }
+        
     }
+    
+    func prepareButtonsArray(){
+        sectionAButton.tag = 1000
+        sectionBButton.tag = 1001
+        sectionCButton.tag = 1002
+        sectionDButton.tag = 1003
+        
+        sectionButtons.append(sectionAButton)
+        sectionButtons.append(sectionBButton)
+        sectionButtons.append(sectionCButton)
+        sectionButtons.append(sectionDButton)
+
+    }
+    
+    
+    func loadControllerOnContainer(controllerIndex: Int){
+        self.docContainerController = self.profileControllers[controllerIndex]
+        
+        self.docContainerController!.view.frame = CGRectMake(0, 0, self.containerVeiw.frame.size.width, self.containerVeiw.frame.size.height);
+        self.docContainerController!.willMoveToParentViewController(self)
+        self.containerVeiw.addSubview(self.docContainerController!.view)
+        self.addChildViewController(self.docContainerController!)
+        self.docContainerController!.didMoveToParentViewController(self)
+        
+    }
+    
     
     @IBAction func saveForm(sender: UIBarButtonItem) {
         
@@ -167,12 +172,24 @@ class FormViewController: UIViewController {
         
         // we have to save this form based on usergorups  into userdocs table
         
-        
-        
         self.dismissViewControllerAnimated(false, completion: nil)
         
     }
     
+    
+    override func viewWillDisappear(animated: Bool) {
+        print("form controllers view will disappear called")
+    }
+    
+    
+    func persistAndClearData(){
+        
+        
+        
+        //clear all the form controller
+        self.sectionButtons.removeAll()
+        self.profileControllers.removeAll()
+    }
     
     
 }

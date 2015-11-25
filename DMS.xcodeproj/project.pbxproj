@@ -12,6 +12,8 @@
 		35127D181BFA4AF60087A170 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35127D171BFA4AF60087A170 /* Utility.swift */; };
 		356368651BFCC84900C1711E /* CategoryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356368641BFCC84900C1711E /* CategoryLine.swift */; };
 		35730B5E1BF2542D008277ED /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35730B5D1BF2542D008277ED /* DetailTableViewCell.swift */; };
+		357CBBD41BFD875D00EC4775 /* StageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CBBD31BFD875D00EC4775 /* StageTableViewCell.swift */; };
+		357CBBD61BFDAAA600EC4775 /* StageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 357CBBD51BFDAAA600EC4775 /* StageData.swift */; };
 		3586CBE51BFC746200EA7977 /* Lifecycle_Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBCF1BFC746200EA7977 /* Lifecycle_Category+CoreDataProperties.swift */; };
 		3586CBE61BFC746200EA7977 /* Lifecycle_Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBD01BFC746200EA7977 /* Lifecycle_Category.swift */; };
 		3586CBE71BFC746200EA7977 /* ProductionDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBD11BFC746200EA7977 /* ProductionDocuments+CoreDataProperties.swift */; };
@@ -78,6 +80,8 @@
 		35127D171BFA4AF60087A170 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		356368641BFCC84900C1711E /* CategoryLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryLine.swift; sourceTree = "<group>"; };
 		35730B5D1BF2542D008277ED /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		357CBBD31BFD875D00EC4775 /* StageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTableViewCell.swift; sourceTree = "<group>"; };
+		357CBBD51BFDAAA600EC4775 /* StageData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageData.swift; sourceTree = "<group>"; };
 		3586CBCF1BFC746200EA7977 /* Lifecycle_Category+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Lifecycle_Category+CoreDataProperties.swift"; path = "../Lifecycle_Category+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3586CBD01BFC746200EA7977 /* Lifecycle_Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Lifecycle_Category.swift; path = ../Lifecycle_Category.swift; sourceTree = "<group>"; };
 		3586CBD11BFC746200EA7977 /* ProductionDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProductionDocuments+CoreDataProperties.swift"; path = "../ProductionDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				356368641BFCC84900C1711E /* CategoryLine.swift */,
+				357CBBD51BFDAAA600EC4775 /* StageData.swift */,
 			);
 			name = Modal;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				35730B5D1BF2542D008277ED /* DetailTableViewCell.swift */,
+				357CBBD31BFD875D00EC4775 /* StageTableViewCell.swift */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -462,12 +468,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				357CBBD61BFDAAA600EC4775 /* StageData.swift in Sources */,
 				35E733F21BF1E3E100815755 /* LoginViewController.swift in Sources */,
 				3586CBF11BFC746200EA7977 /* Users_Documents+CoreDataProperties.swift in Sources */,
 				3586CBEC1BFC746200EA7977 /* LifeCycle.swift in Sources */,
 				35FFFC9C1BF4853200E134AF /* StageViewController.swift in Sources */,
 				3586CBFA1BFC746200EA7977 /* LifeCycle_Stages.swift in Sources */,
 				3586CBE61BFC746200EA7977 /* Lifecycle_Category.swift in Sources */,
+				357CBBD41BFD875D00EC4775 /* StageTableViewCell.swift in Sources */,
 				3586CBF21BFC746200EA7977 /* Users_Documents.swift in Sources */,
 				3586CBE51BFC746200EA7977 /* Lifecycle_Category+CoreDataProperties.swift in Sources */,
 				35E733F61BF1E43600815755 /* DetailTableViewController.swift in Sources */,

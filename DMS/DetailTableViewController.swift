@@ -17,7 +17,7 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     @IBOutlet weak var notificationButton: UIBarButtonItem!
     @IBOutlet weak var infoPencilButton: UIButton!
     var docList: [ProductionDocuments]?
-    
+    var masterdoc: ProductionDocuments?
     
 
     override func viewDidLoad() {
@@ -27,6 +27,12 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         let documentsList = DataPersistence.getDataFromTableAsList("ProductionDocuments") as? [ProductionDocuments]
         self.docList = documentsList
         
+        
+        if masterdoc != nil{
+            performSegueWithIdentifier("docviewer", sender: nil)
+        }
+        
+               
 
     }
 

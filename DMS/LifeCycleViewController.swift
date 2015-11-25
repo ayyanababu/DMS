@@ -24,12 +24,19 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
     @IBOutlet weak var categorySearchButton: UIButton!
     @IBOutlet weak var lifeCycleNameField: UITextField!
     @IBOutlet weak var categoryNameField: UITextField!
+    var docInfo: ProductionDocuments?
+
     
+  
     var lifecycleselected: String?
     var categorySelected: String?
     var effectiveData: NSDate?
     
     var textfieldtype: String?
+    var isUpversionDoc: Bool?
+    let lifeCycles = DataPersistence.getDataFromTableAsList("LifeCycle") as! [LifeCycle]
+    var lifecycle_categories: [Lifecycle_Category]?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,8 +96,14 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
                 controller.delegate = self
                 textfieldtype = "lifecycle"
                 controller.navTitle = storyboardconstants.LIFE_CYCLE_TITLE
-                let array: [String] = ["lifecycle1","lifecycle2","lifecycle3","lifecycle4","lifecycle5"]
-                controller.tableHelperData = array
+                
+                var lifecycleArray = [String]()
+                for eachlifeCycle in self.lifeCycles{
+                    lifecycleArray.append(eachlifeCycle.lifecyclename!)
+                }
+                
+                
+                controller.tableHelperData = lifecycleArray
             }
             
         }else if segue.identifier == storyboardconstants.CATEGORY_NAME_SEGUE{
@@ -98,12 +111,56 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
                 controller.delegate = self
 
                 controller.navTitle = storyboardconstants.CATEGORY_TITLE
-                let array: [String] = ["category1","category2","category3","category4","category5",]
-                controller.tableHelperData = array
+                
+                
+                let lifecycleid = self.getLifeCycleId(self.lifeCycleNameField.text!)
+                
+                 NSUserDefaults.standardUserDefaults().setValue(lifecycleid, forKey: "selectedlifecycleid")
+                
+                let lifecycle_categories = DataPersistence.getDataFromTableWithFilter("Lifecycle_Category", coloumnName: "lifecycleid", filterParameters: [lifecycleid]) as? [Lifecycle_Category]
+              
+                self.lifecycle_categories = lifecycle_categories
+                var categoryArray = [String]()
+                for eachcategory in lifecycle_categories!{
+                    categoryArray.append(eachcategory.categoryname!)
+                }
+                
+                controller.tableHelperData = categoryArray
 
             }
         }
     }
+    
+    
+    func getLifeCycleId(lifecycleName:String) -> String{
+        
+        var lifecycleId: String?
+        for eachLifeCycle in self.lifeCycles{
+            if eachLifeCycle.lifecyclename == lifecycleName{
+                lifecycleId =  eachLifeCycle.lifecycleid
+                break;
+            }
+        }
+       // lifecycleId = nil
+        return lifecycleId!
+    }
+    
+    
+    func getCategoryId(categoryName:String) -> String{
+        
+        var categoryId: String?
+        let categories = DataPersistence.getDataFromTableAsList("Category") as! [Category]
+        for eachCategory in categories{
+            if eachCategory.categoryname == categoryName{
+                categoryId =  eachCategory.categoryid
+                break;
+            }
+        }
+       // categoryId = nil
+        return categoryId!
+    }
+
+   
     
     //MARK: TableHelperDelegate
     
@@ -112,6 +169,9 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
         
         if textfieldtype == "lifecycle"{
          self.lifeCycleNameField.text = selectedValue
+            
+        let lifecycleid = self.getLifeCycleId(self.lifeCycleNameField.text!)
+         NSUserDefaults.standardUserDefaults().setValue(lifecycleid, forKey: "selectedlifecycleid")
          textfieldtype = ""
         }else{
             self.categoryNameField.text = selectedValue

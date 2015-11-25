@@ -95,6 +95,8 @@ class InfoTableViewController: UITableViewController {
             if let controller = navcontroller?.topViewController as? FormViewController
             {
                 controller.docTitle = "Up Version"
+                controller.isUpversionDoc = true
+                controller.docInfo = self.docInfo
             }
         }
     }

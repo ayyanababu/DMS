@@ -8,10 +8,16 @@
 
 import UIKit
 
-class MasterTableViewController: UITableViewController {
+class MasterTableViewController: UITableViewController, UISearchBarDelegate {
     
     
     var categoryLines = [CategoryLine]()
+    var filteredCategoryLines = [CategoryLine]()
+    
+    var searchActive : Bool = false
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    
     
     func constructCategoryLines(){
         
@@ -29,7 +35,7 @@ class MasterTableViewController: UITableViewController {
                 
             }
         }
-            
+        
         
     }
     
@@ -39,11 +45,11 @@ class MasterTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame:CGRectZero)
         self.constructCategoryLines()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return categoryLines.count
     }
@@ -61,6 +67,38 @@ class MasterTableViewController: UITableViewController {
     }
     
     
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    //searchBarResultsListButtonClicked
+    
+    func searchBarResultsListButtonClicked(searchBar: UISearchBar) {
+        
+        
+        
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("mastercell", forIndexPath: indexPath)
         let productLine = categoryLines[indexPath.section]
@@ -70,21 +108,25 @@ class MasterTableViewController: UITableViewController {
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textColor = UIColor.blackColor()
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 17.0)
-        cell.textLabel?.font = UIFont.boldSystemFontOfSize(17)
+        cell.textLabel?.font = UIFont(name: "Avenir-Light", size: 17.0)
         
         
         return cell
     }
     
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showdetail"{
             
             if let indexPath = self.tableView.indexPathForSelectedRow{
-                //let value = array[indexPath.row]
                 let detailView = (segue.destinationViewController as! UINavigationController).topViewController as! DetailTableViewController
                 detailView.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
                 detailView.navigationItem.leftItemsSupplementBackButton = true
+                
+                let productLine = categoryLines[indexPath.section]
+                let document = productLine.documents![indexPath.row]
+                detailView.masterdoc = document
             }
             
         }
@@ -104,7 +146,11 @@ class MasterTableViewController: UITableViewController {
         view.tintColor = UIColor(red: 32/255, green: 173/255, blue: 82/255, alpha: 1.0).colorWithAlphaComponent(0.5)
         
     }
-
-   
-
+    
+    
+    //MARK: SearchAction
+    
+    @IBOutlet var searchcollection: [UISearchBar]!
+    
+    
 }

@@ -81,8 +81,8 @@ class DataPersistence{
     
     static let lifecategoryarray: [[String: AnyObject]] = [
         
-        ["categoryid":"C1300", "categoryname":"ASC","lifecycleid":"C1400"],
-        ["categoryid":"C1301", "categoryname":"Enterprise Governance","lifecycleid":"C1400"]
+        ["categoryid":"C1300", "categoryname":"ASC","lifecycleid":"L1400"],
+        ["categoryid":"C1301", "categoryname":"Enterprise Governance","lifecycleid":"L1400"]
             
     ]
     
@@ -746,6 +746,69 @@ class DataPersistence{
         return arrayResults
         
     }
+    //[NSPredicate predicateWithFormat:@"length > %@ AND name CONTAINS %@", @2.0f, @"Live"];
+    //Compound predicate
+    static func getDataFromTableWithFilterCompound(tableName: String,coloumnName: [String], filterParameters: [String]) -> [NSManagedObject] {
+        
+        //var filteredResult: NSManagedObject?
+        var arrayResults = [NSManagedObject]()
+        
+        
+        //1
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: tableName)
+        fetchRequest.returnsObjectsAsFaults = false;
+        fetchRequest.predicate = NSPredicate(format: " \(coloumnName[0]) IN %@ AND \(coloumnName[1]) CONTAINS %@ ", filterParameters[0],filterParameters[1])
+    
+        //3
+        do {
+            let results =
+            try managedContext.executeFetchRequest(fetchRequest)
+            arrayResults =  results as! [NSManagedObject]
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return arrayResults
+        
+    }
+
+    
+    
+    
+    static func getDataFromTableWithFilterContains(tableName: String,coloumnName: String, filterParameters: [String]) -> [NSManagedObject] {
+        
+        //var filteredResult: NSManagedObject?
+        var arrayResults = [NSManagedObject]()
+        
+        
+        //1
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        
+        //2
+        let fetchRequest = NSFetchRequest(entityName: tableName)
+        fetchRequest.returnsObjectsAsFaults = false;
+        fetchRequest.predicate = NSPredicate(format: " \(coloumnName) CONTAINS[d] %@", filterParameters)
+        
+        //3
+        do {
+            let results =
+            try managedContext.executeFetchRequest(fetchRequest)
+            arrayResults =  results as! [NSManagedObject]
+            
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        
+        return arrayResults
+        
+    }
+
     
 
     
