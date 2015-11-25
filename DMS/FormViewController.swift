@@ -171,6 +171,7 @@ class FormViewController: UIViewController {
         //while saving a form we have to do below steps
         
         // we have to save this form based on usergorups  into userdocs table
+        self.persistAndClearData()
         
         self.dismissViewControllerAnimated(false, completion: nil)
         
@@ -182,10 +183,90 @@ class FormViewController: UIViewController {
     }
     
     
+    
+    //Here we have to save the data from all controllers and update in production documents if doc is new create document or upversion
     func persistAndClearData(){
         
         
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
         
+        
+        
+
+
+        let prodDocument = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
+        prodDocument![0].docstatus = "Process"
+        for eachController in self.profileControllers{
+            print(self.docInfo?.docid)
+            if eachController.isKindOfClass(DocProfileViewController){
+                let docprofilecontroller = eachController as? DocProfileViewController
+                
+                if let docname = docprofilecontroller?.docNamelabel.text{
+                    prodDocument![0].docname = docname
+                }else{
+                    prodDocument![0].docname = self.docInfo?.docname
+                }
+                
+                if let docdesc = docprofilecontroller?.docDescriptionTextView.text{
+                    prodDocument![0].docdescription = docdesc
+                }else{
+                    prodDocument![0].docdescription = self.docInfo?.docdescription
+                }
+
+                
+                
+                
+            }else if eachController .isKindOfClass(LifeCycleViewController){
+                let lifeCycleController = eachController as? LifeCycleViewController
+                
+                if let lifecyclename = lifeCycleController?.lifeCycleNameField.text{
+                     prodDocument![0].lifecycle = lifecyclename
+                }else{
+                    prodDocument![0].lifecycle = self.docInfo?.lifecycle
+                }
+                
+                if let categoryname = lifeCycleController?.categoryNameField.text{
+                    prodDocument![0].categoryname = categoryname
+                }
+
+                if let doceffectivedate = lifeCycleController?.datePicker.date{
+                    prodDocument![0].doceffectivedate = doceffectivedate
+                }
+                
+
+            }else if eachController .isKindOfClass(AuthorViewController){
+                let authorController = eachController as? AuthorViewController
+                
+                if let docowner = authorController?.initiatorLabel.text{
+                    prodDocument![0].docowner = docowner
+                }
+
+            }else if eachController .isKindOfClass(StageViewController){
+                let stageController = eachController as? StageViewController
+
+                if let actionname = stageController?.actionField.text{
+                
+                }
+            }
+        }
+        
+   
+        
+        let prodDocument1 = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
+        
+        print(prodDocument1![0].docname)
+        print(prodDocument1![0].docdescription)
+        print(prodDocument1![0].docstatus)
+        print(prodDocument1![0].doceffectivedate)
+        print(prodDocument1![0].lifecycle)
+        print(prodDocument1![0].categoryname)
+        
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("could not save because of error \(error.debugDescription)")
+        }
         //clear all the form controller
         self.sectionButtons.removeAll()
         self.profileControllers.removeAll()

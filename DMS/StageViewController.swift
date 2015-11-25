@@ -21,10 +21,14 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
     @IBOutlet weak var stageNameField: UITextField!
     @IBOutlet weak var stageUsers: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
+
     var docInfo: ProductionDocuments?
     var lifecycleid: String?
     var stageData = [StageData]()
-    
+    var docid: String?
+    let lifeCycles = DataPersistence.getDataFromTableAsList("LifeCycle") as! [LifeCycle]
+
     
     var isUpversionDoc: Bool?
     
@@ -34,9 +38,37 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
         self.tableView.clipsToBounds = true
         self.tableView.layer.borderWidth = 1.0
         self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.loadStageTableData()
+        
     }
     
+    func getLifeCycleId(lifecycleName:String) -> String{
+        
+        var lifecycleId: String?
+        for eachLifeCycle in self.lifeCycles{
+            if eachLifeCycle.lifecyclename == lifecycleName{
+                lifecycleId =  eachLifeCycle.lifecycleid
+                break;
+            }
+        }
+        // lifecycleId = nil
+        return lifecycleId!
+    }
+
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.loadStageTableData()
+        
+        if isUpVersion{
+            print("isupversion")
+        }else{
+            self.loadStageTableData()
+            
+        }
+        
+        self.tableView.reloadData()
+
+    }
     @IBAction func actionSearchClick(sender: UIButton) {
         print("clicked on action search on stage view controller")
     }
@@ -113,7 +145,7 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
             let sectiondata = self.stageData[indexPath.section]
             let sectionUsers = sectiondata.stageUsers![indexPath.row]
             
-            cell!.stageNameLabel.text = sectionUsers.id
+            //cell!.stageNameLabel.text = sectionUsers.id
             cell!.stageUsersLabel.text = sectionUsers.username
         }
         
@@ -124,7 +156,17 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
     
     
     func loadStageTableData(){
-        let lifecycleid = NSUserDefaults.standardUserDefaults().valueForKey("selectedlifecycleid") as? String
+        
+        
+        var lifecycleid = NSUserDefaults.standardUserDefaults().valueForKey("selectedlifecycleid") as? String
+        if isUpVersion{
+            print("isupversion")
+            lifecycleid = self.getLifeCycleId((self.docInfo?.lifecycle)!)
+
+        }
+        
+        
+        
         if lifecycleid == " "{
                 return
         }

@@ -12,7 +12,6 @@ class StageTableViewCell: UITableViewCell {
     
     
     
-    @IBOutlet weak var stageNameLabel: UILabel!
     @IBOutlet weak var stageUsersLabel: UILabel!
 
     override func awakeFromNib() {

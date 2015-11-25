@@ -250,7 +250,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="oGb-cu-7fm">
-                            <rect key="frame" x="0.0" y="64" width="800" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -2142,44 +2142,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t7p-CE-jU0">
-                                                    <rect key="frame" x="8" y="8" width="167" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="167" id="ZKS-4P-5h4"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Of Stage Users" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3x7-N9-bKF">
-                                                    <rect key="frame" x="204" y="10" width="227" height="31"/>
+                                                    <rect key="frame" x="18" y="10" width="534" height="29"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="227" id="BD2-G0-S5O"/>
+                                                        <constraint firstAttribute="width" constant="534" id="BD2-G0-S5O"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YSu-qo-NIy">
-                                                    <rect key="frame" x="198" y="0.0" width="1" height="50"/>
-                                                    <color key="backgroundColor" red="0.8784313725490196" green="0.8784313725490196" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="YSu-qo-NIy" firstAttribute="leading" secondItem="t7p-CE-jU0" secondAttribute="trailing" constant="23" id="1rS-sp-g2A"/>
-                                                <constraint firstItem="YSu-qo-NIy" firstAttribute="centerY" secondItem="t7p-CE-jU0" secondAttribute="centerY" id="35H-Nq-yIm"/>
-                                                <constraint firstItem="3x7-N9-bKF" firstAttribute="centerY" secondItem="t7p-CE-jU0" secondAttribute="centerY" id="8Zr-tn-GeE"/>
-                                                <constraint firstItem="t7p-CE-jU0" firstAttribute="top" secondItem="qXg-El-EQP" secondAttribute="top" constant="8" id="90M-Y4-3cv"/>
-                                                <constraint firstItem="t7p-CE-jU0" firstAttribute="leading" secondItem="qXg-El-EQP" secondAttribute="leading" constant="8" id="Fmr-So-pWs"/>
-                                                <constraint firstAttribute="bottom" secondItem="t7p-CE-jU0" secondAttribute="bottom" constant="8" id="Ike-RW-icj"/>
-                                                <constraint firstItem="3x7-N9-bKF" firstAttribute="leading" secondItem="t7p-CE-jU0" secondAttribute="trailing" constant="29" id="ch7-qk-xuH"/>
-                                                <constraint firstItem="YSu-qo-NIy" firstAttribute="top" secondItem="qXg-El-EQP" secondAttribute="top" id="dzY-ME-pIm"/>
-                                                <constraint firstItem="3x7-N9-bKF" firstAttribute="leading" secondItem="YSu-qo-NIy" secondAttribute="trailing" constant="5" id="eE9-QA-z5O"/>
+                                                <constraint firstItem="3x7-N9-bKF" firstAttribute="centerY" secondItem="qXg-El-EQP" secondAttribute="centerY" id="bsP-7w-Pqt"/>
+                                                <constraint firstItem="3x7-N9-bKF" firstAttribute="trailing" secondItem="qXg-El-EQP" secondAttribute="trailingMargin" id="btL-Kc-5NW"/>
                                                 <constraint firstItem="3x7-N9-bKF" firstAttribute="top" secondItem="qXg-El-EQP" secondAttribute="topMargin" constant="2" id="nPy-sm-YTc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="stageNameLabel" destination="t7p-CE-jU0" id="jqB-cr-czp"/>
                                             <outlet property="stageUsersLabel" destination="3x7-N9-bKF" id="6lZ-0r-UWJ"/>
                                         </connections>
                                     </tableViewCell>

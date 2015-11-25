@@ -24,6 +24,7 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
     @IBOutlet weak var keywordsField: UITextField!
     @IBOutlet weak var uploadDocSearchButton: UIButton!
     @IBOutlet weak var uploadDocField: UITextField!
+    var docid: String?
     
     var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
     var docInfo: ProductionDocuments?
@@ -40,12 +41,21 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
         
         if isUpVersion{
             print("isupversion")
+            self.setAutoPopulateData()
         }
        
         
     }
     
     
+    func setAutoPopulateData(){
+        self.docNamelabel.text = docInfo?.docname
+        self.docDescriptionTextView.text = docInfo?.docdescription
+        self.uploadDocField.text = ""
+        
+    
+    }
+
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -103,6 +113,8 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
         dismissViewControllerAnimated(false, completion: nil)
         
     }
+    
+    
     
     
 }

@@ -27,6 +27,7 @@ class InfoTableViewController: UITableViewController {
     @IBOutlet weak var docNextReviewDate: UILabel!
     @IBOutlet weak var lifecyclenamelabel: UILabel!
     @IBOutlet weak var categoryName: UILabel!
+    var documentId: String?
     
     var docInfo: ProductionDocuments?
     
@@ -42,7 +43,7 @@ class InfoTableViewController: UITableViewController {
         self.docNumber.text = "1"
         self.docAuthorLabel.text = self.docInfo?.docowner
         self.docOwnerLabel.text = self.docInfo?.docowner
-        
+        self.documentId = self.docInfo?.docid
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd/MM/YYYY"

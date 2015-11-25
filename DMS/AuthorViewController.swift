@@ -14,15 +14,33 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var initiatorLabel: UITextField!
     @IBOutlet weak var authorLabel: UITextField!
     @IBOutlet weak var OwnerLabel: UITextField!
-    var isUpversionDoc: Bool?
+    var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
     var docInfo: ProductionDocuments?
+    var docid: String?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isUpVersion{
+            print("isupversion")
+            self.setAutopopulatedata()
+        }
+
 
         // Do any additional setup after loading the view.
     }
+    
+    
+    func setAutopopulatedata()
+    {
+        self.initiatorLabel.text = self.docInfo?.docowner
+        self.authorLabel.text = self.docInfo?.docowner
+        self.OwnerLabel.text = self.docInfo?.docowner
+        
+        
+    }
+
   
     
     func textFieldDidEndEditing(textField: UITextField) {

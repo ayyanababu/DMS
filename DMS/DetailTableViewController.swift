@@ -23,11 +23,16 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       /* let loggedInUser = NSUserDefaults.standardUserDefaults().objectForKey("loggedinusername") as? String */
         let documentsList = DataPersistence.getDataFromTableAsList("ProductionDocuments") as? [ProductionDocuments]
-        self.docList = documentsList
-        
-        
+        self.docList = [ProductionDocuments]()
+        for eachdoc in documentsList!{
+            if eachdoc.docstatus == "Production"
+            {
+                self.docList?.append(eachdoc)
+            }
+        }
+
+
         if masterdoc != nil{
             performSegueWithIdentifier("docviewer", sender: nil)
         }

@@ -31,16 +31,31 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
     var lifecycleselected: String?
     var categorySelected: String?
     var effectiveData: NSDate?
-    
     var textfieldtype: String?
-    var isUpversionDoc: Bool?
+    var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
     let lifeCycles = DataPersistence.getDataFromTableAsList("LifeCycle") as! [LifeCycle]
     var lifecycle_categories: [Lifecycle_Category]?
+    var docid: String?
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if isUpVersion{
+            print("isupversion")
+            self.setAutopopulatedata()
+        }
 
+
+    }
+    
+    func setAutopopulatedata()
+    {
+        self.lifeCycleNameField.text = self.docInfo?.lifecycle
+        self.categoryNameField.text = self.docInfo?.categoryname
+        
+        self.datePicker.setDate((self.docInfo?.doceffectivedate)!, animated: false)
+        
     }
 
    

@@ -686,36 +686,7 @@ class DataPersistence{
         return arrayResults
     }
     
-    
-//    static func getDataFromTableWithFilter(tableName: String,coloumnName: String, filterParameter: String) -> [NSManagedObject] {
-//        
-//        //var filteredResult: NSManagedObject?
-//        var arrayResults = [NSManagedObject]()
-//        
-//        
-//        //1
-//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//        let managedContext = appDelegate.managedObjectContext
-//        
-//        //2
-//        let fetchRequest = NSFetchRequest(entityName: tableName)
-//        fetchRequest.returnsObjectsAsFaults = false;
-//        fetchRequest.predicate = NSPredicate(format: "username = %@", filterParameter)
-//        
-//        //3
-//        do {
-//            let results =
-//            try managedContext.executeFetchRequest(fetchRequest)
-//            arrayResults =  results as! [NSManagedObject]
-//            
-//        } catch let error as NSError {
-//            print("Could not fetch \(error), \(error.userInfo)")
-//        }
-//        
-//        return arrayResults
-//        
-//    }
-//    
+
     
     
     static func getDataFromTableWithFilter(tableName: String,coloumnName: String, filterParameters: [String]) -> [NSManagedObject] {
@@ -748,7 +719,7 @@ class DataPersistence{
     }
     //[NSPredicate predicateWithFormat:@"length > %@ AND name CONTAINS %@", @2.0f, @"Live"];
     //Compound predicate
-    static func getDataFromTableWithFilterCompound(tableName: String,coloumnName: [String], filterParameters: [String]) -> [NSManagedObject] {
+    static func getDataFromTableWithFilterCompound(tableName: String,coloumnName: [String], filterParameters: [[String]]) -> [NSManagedObject] {
         
         //var filteredResult: NSManagedObject?
         var arrayResults = [NSManagedObject]()
