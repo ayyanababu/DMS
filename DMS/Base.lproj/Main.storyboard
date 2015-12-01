@@ -257,18 +257,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="oGb-cu-7fm">
-                            <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="zfH-Xj-J9J">
+                            <rect key="frame" x="0.0" y="136" width="600" height="56"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hsw-AK-se6">
+                                    <rect key="frame" x="200" y="8" width="200" height="40"/>
+                                    <animations/>
+                                    <color key="backgroundColor" red="0.12549019610000001" green="0.67843137249999996" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="lg5-LW-jPO"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <state key="normal" title="Log Out">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="logOutAction:" destination="Dks-kj-VUy" eventType="touchUpInside" id="PyD-kL-bB5"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <animations/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="Dks-kj-VUy" id="0BI-iJ-yTo"/>
-                            </connections>
-                        </searchBar>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Hsw-AK-se6" firstAttribute="centerY" secondItem="zfH-Xj-J9J" secondAttribute="centerY" id="5Zs-pM-jwX"/>
+                                <constraint firstItem="Hsw-AK-se6" firstAttribute="centerX" secondItem="zfH-Xj-J9J" secondAttribute="centerX" id="ZBw-cI-bvl"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mastercell" id="OKa-9W-hBY">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OKa-9W-hBY" id="epv-UB-bRW">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -285,7 +304,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="maf-7w-1uf"/>
                     <connections>
-                        <outlet property="searchBar" destination="oGb-cu-7fm" id="1jx-v8-WzQ"/>
+                        <outlet property="logOutButton" destination="Hsw-AK-se6" id="3u7-sE-xev"/>
                         <segue destination="Zub-bw-a0a" kind="showDetail" identifier="showdetail" id="U8g-Qi-aSg"/>
                     </connections>
                 </tableViewController>
@@ -312,6 +331,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="4gu-Oy-GUx" kind="show" identifier="notificationupversion" id="3D9-4h-Vlb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -595,7 +617,7 @@
                                         <constraint firstAttribute="width" constant="105" id="yeN-9j-Bfk"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                    <state key="normal" title="Delete">
+                                    <state key="normal" title="Edit">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -1137,7 +1159,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QI5-CQ-89Y" userLabel="leftview">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QI5-CQ-89Y" userLabel="leftview">
                                 <rect key="frame" x="0.0" y="44" width="180" height="556"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdf1" translatesAutoresizingMaskIntoConstraints="NO" id="4wc-w7-HkX">
@@ -1314,7 +1336,7 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="New Form" id="4yy-ZE-FPP">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="p3a-95-ZwH">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="p3a-95-ZwH">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="saveForm:" destination="JI4-oi-QHh" id="Ohd-HS-eFH"/>
@@ -2472,7 +2494,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="U8g-Qi-aSg"/>
-        <segue reference="WA6-aL-llc"/>
+        <segue reference="3D9-4h-Vlb"/>
         <segue reference="Vzb-uN-rbm"/>
     </inferredMetricsTieBreakers>
 </document>

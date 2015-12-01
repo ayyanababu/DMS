@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class MasterTableViewController: UITableViewController, UISearchBarDelegate {
     
     
@@ -16,6 +18,7 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
     
     var searchActive : Bool = false
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var logOutButton: UIButton!
     
     
     
@@ -42,8 +45,11 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Categories"
-        tableView.tableFooterView = UIView(frame:CGRectZero)
+        //tableView.tableFooterView = UIView(frame:CGRectZero)
         self.constructCategoryLines()
+        
+        self.tableView.backgroundColor = UIColor.whiteColor()
+        self.logOutButton.backgroundColor = UIColor(colorLiteralRed: 251/255, green: 73/255, blue: 71/255, alpha: 1.0)
     }
     
     override func didReceiveMemoryWarning() {
@@ -97,7 +103,7 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
         
     }
     
-    
+  
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("mastercell", forIndexPath: indexPath)
@@ -113,6 +119,7 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
         
         return cell
     }
+    
     
     
     
@@ -148,7 +155,12 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
     }
     
     
-    //MARK: SearchAction
+    //MARK: LogoutButton
+    
+    @IBAction func logOutAction(sender: UIButton) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.loggedIn = false
+    }
     
     @IBOutlet var searchcollection: [UISearchBar]!
     

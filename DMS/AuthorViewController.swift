@@ -22,6 +22,9 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let initiatorname = NSUserDefaults.standardUserDefaults().objectForKey("loggedinusername") as? String;
+        self.initiatorLabel.text = initiatorname
+        
         if isUpVersion{
             print("isupversion")
             self.setAutopopulatedata()
@@ -34,7 +37,7 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
     
     func setAutopopulatedata()
     {
-        self.initiatorLabel.text = self.docInfo?.docowner
+        
         self.authorLabel.text = self.docInfo?.docowner
         self.OwnerLabel.text = self.docInfo?.docowner
         

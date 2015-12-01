@@ -194,12 +194,14 @@ class FormViewController: UIViewController {
         let prodDocument = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
         
         
-        if isUpversionDoc{
-            prodDocument![0].docstatus = "Process"
-            
-        }else{
-            prodDocument![0].docstatus = "Production"
-        }
+//        if isUpversionDoc{
+//            prodDocument![0].docstatus = "Process"
+//            
+//        }else{
+//            prodDocument![0].docstatus = "Production"
+//        }
+        
+         prodDocument![0].docstatus = "Process"
         
         for eachController in self.profileControllers{
             print(self.docInfo?.docid)
@@ -248,6 +250,10 @@ class FormViewController: UIViewController {
 
             }else if eachController .isKindOfClass(StageViewController){
                 let stageController = eachController as? StageViewController
+                
+                if stageController?.actionField.text == "Move To Production"{
+                    prodDocument![0].docstatus = "Production"
+                }
 
                 if stageController?.stageid != "-1"{
                     prodDocument![0].stageid = stageController?.stageid

@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
         didSet {
             if loggedIn == true {
                 loadRootViewController()
+            }else{
+                loadRootViewController()
             }
         }
     }
@@ -81,6 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
             if let mainboard = storyBoard{
                 window = UIWindow(frame: UIScreen.mainScreen().bounds)
                 let splitcontroller = mainboard.instantiateViewControllerWithIdentifier("splitcontroller")
+                print(splitcontroller.parentViewController);
                 self.window?.rootViewController = splitcontroller
                 self.window?.makeKeyAndVisible()
                 
@@ -96,6 +99,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
     func didLoginSuccessfully(){
         loggedIn = true
     }
+    
+
     
     func applicationWillResignActive(application: UIApplication) {
         

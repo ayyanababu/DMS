@@ -51,6 +51,10 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
             }
         }
         
+        if self.stageid == "-1"{
+            self.setActionName("LS1500")
+            self.stageid = "LS1500"
+        }
     
         
     }
@@ -186,6 +190,9 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
             print("isupversion")
             lifecycleid = self.getLifeCycleId((self.docInfo?.lifecycle)!)
 
+        }else{
+            //to be delete
+            lifecycleid = "L1400"
         }
         
         

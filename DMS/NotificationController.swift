@@ -59,6 +59,27 @@ class NotificationController: UITableViewController {
         return cell
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "notificationupversion"{
+            if let superviewcell = sender as? UITableViewCell{
+                let indexpath = self.tableView.indexPathForCell(superviewcell)
+                print(indexpath?.row)
+                let navcontroller = segue.destinationViewController as? UINavigationController
+                if let controller = navcontroller?.topViewController as? FormViewController
+                {
+                    controller.docTitle = "Up Version"
+                    controller.isUpversionDoc = true
+                    controller.docInfo = self.docList![(indexpath?.row)!]
+                }
+                
+                print(indexpath?.row)
+            }
+            
+        }
+        
+        
+        
+    }
     
     
 }
