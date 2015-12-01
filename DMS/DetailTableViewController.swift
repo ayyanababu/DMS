@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
+class DetailTableViewController: UITableViewController, UIActionSheetDelegate, InfoTableViewControllerDelegate {
     
     
     //MARK: Variables and Constants
@@ -23,6 +23,17 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       self.fillDocListArray()
+
+        if masterdoc != nil{
+            performSegueWithIdentifier("docviewer", sender: nil)
+        }
+        
+               
+
+    }
+    
+    func fillDocListArray(){
         let documentsList = DataPersistence.getDataFromTableAsList("ProductionDocuments") as? [ProductionDocuments]
         self.docList = [ProductionDocuments]()
         for eachdoc in documentsList!{
@@ -31,13 +42,6 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
                 self.docList?.append(eachdoc)
             }
         }
-
-
-        if masterdoc != nil{
-            performSegueWithIdentifier("docviewer", sender: nil)
-        }
-        
-               
 
     }
 
@@ -83,7 +87,15 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
     }
     
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewdidappear in detailcontroller")
+    }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        print("view will appear in detailcontroller")
+    }
     
     //MARK: NotificationAction
     
@@ -181,6 +193,7 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
                 let indexpath = self.tableView.indexPathForCell(superviewcell)
                 let navcontroller = segue.destinationViewController as? UINavigationController
                 if let controller = navcontroller?.topViewController as? InfoTableViewController{
+                    controller.delegate = self
                     controller.docInfo = self.docList![indexpath!.row]
                 }
                 
@@ -191,7 +204,10 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate {
         
     }
     
-    
+    func reloadTableView() {
+        self.fillDocListArray()
+        self.tableView.reloadData()
+    }
     
     
     

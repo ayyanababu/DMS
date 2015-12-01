@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F1021" minimumToolsVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15B42" minimumToolsVersion="Automatic">
     <entity name="AccessGroup" representedClassName=".AccessGroup" syncable="YES">
         <attribute name="accessgroupname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="acessgroupid" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +23,7 @@
         <attribute name="stagename" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="ProductionDocuments" representedClassName=".ProductionDocuments" syncable="YES">
+        <attribute name="accessgroupid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categoryname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="docattachment" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="doccreationdate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -35,6 +36,7 @@
         <attribute name="docstatus" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="docversion" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lifecycle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stageid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="userslist" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Users" inverseName="documentslist" inverseEntity="Users" syncable="YES"/>
     </entity>
@@ -80,7 +82,7 @@
         <element name="LifeCycle" positionX="16" positionY="213" width="128" height="75"/>
         <element name="Lifecycle_Category" positionX="-153" positionY="198" width="128" height="90"/>
         <element name="LifeCycle_Stages" positionX="-36" positionY="-9" width="128" height="90"/>
-        <element name="ProductionDocuments" positionX="-81" positionY="-306" width="128" height="253"/>
+        <element name="ProductionDocuments" positionX="-81" positionY="-306" width="128" height="285"/>
         <element name="RoutingDetails" positionX="88" positionY="-90" width="128" height="150"/>
         <element name="Stages_AccessGroup" positionX="-216" positionY="9" width="128" height="120"/>
         <element name="Users" positionX="-405" positionY="-261" width="128" height="148"/>

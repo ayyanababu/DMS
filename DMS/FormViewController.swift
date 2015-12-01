@@ -190,13 +190,17 @@ class FormViewController: UIViewController {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
-        
-        
-        
-
 
         let prodDocument = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
-        prodDocument![0].docstatus = "Process"
+        
+        
+        if isUpversionDoc{
+            prodDocument![0].docstatus = "Process"
+            
+        }else{
+            prodDocument![0].docstatus = "Production"
+        }
+        
         for eachController in self.profileControllers{
             print(self.docInfo?.docid)
             if eachController.isKindOfClass(DocProfileViewController){
@@ -245,12 +249,36 @@ class FormViewController: UIViewController {
             }else if eachController .isKindOfClass(StageViewController){
                 let stageController = eachController as? StageViewController
 
-                if let actionname = stageController?.actionField.text{
-                
+                if stageController?.stageid != "-1"{
+                    prodDocument![0].stageid = stageController?.stageid
+                    
+                    var routingDetails =  DataPersistence.getRoutingDetailsByPassingStageId((stageController?.stageid)!)
+                    if routingDetails?.count > 0 {
+                        let routingdetail = routingDetails![0]
+                        prodDocument![0].stageid = routingdetail.routingstageid
+                        
+                        
+                        var stageAccessgroup =  DataPersistence.getDataFromTableWithFilter("Stages_AccessGroup", coloumnName: "stageid", filterParameters: [routingdetail.routingstageid!]) as? [Stages_AccessGroup]
+                        
+                        if stageAccessgroup?.count > 0 {
+                            let accessgroupid = stageAccessgroup![0].accessgroupid
+                            prodDocument![0].accessgroupid = accessgroupid
+                            
+                        }
+
+                    }
+                    
+                   
+                    
                 }
             }
         }
         
+        do{
+            try managedContext.save()
+        }catch let error as NSError{
+            print("could not save because of error \(error.debugDescription)")
+        }
    
         
         let prodDocument1 = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
@@ -261,12 +289,10 @@ class FormViewController: UIViewController {
         print(prodDocument1![0].doceffectivedate)
         print(prodDocument1![0].lifecycle)
         print(prodDocument1![0].categoryname)
+         print(prodDocument1![0].stageid)
+         print(prodDocument1![0].accessgroupid)
         
-        do{
-            try managedContext.save()
-        }catch let error as NSError{
-            print("could not save because of error \(error.debugDescription)")
-        }
+       
         //clear all the form controller
         self.sectionButtons.removeAll()
         self.profileControllers.removeAll()

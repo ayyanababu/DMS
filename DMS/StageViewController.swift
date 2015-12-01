@@ -21,13 +21,14 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
     @IBOutlet weak var stageNameField: UITextField!
     @IBOutlet weak var stageUsers: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    
     var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
-
     var docInfo: ProductionDocuments?
     var lifecycleid: String?
     var stageData = [StageData]()
     var docid: String?
     let lifeCycles = DataPersistence.getDataFromTableAsList("LifeCycle") as! [LifeCycle]
+    var stageid: String?
 
     
     var isUpversionDoc: Bool?
@@ -38,6 +39,28 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
         self.tableView.clipsToBounds = true
         self.tableView.layer.borderWidth = 1.0
         self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        self.stageid = "-1"
+        if let stageid = self.docInfo?.stageid{
+            if stageid == "-1"{
+                self.setActionName("LS1500")
+                self.stageid = "LS1500"
+            }else{
+                self.stageid = stageid
+                self.setActionName(stageid)
+            }
+        }
+        
+    
+        
+    }
+    
+    func setActionName(stageid: String){
+       var routingDetails =  DataPersistence.getRoutingDetailsByPassingStageId(stageid)
+        if routingDetails?.count > 0 {
+            let routingdetail = routingDetails![0]
+            self.actionField.text = routingdetail.actionname
+        }
         
     }
     

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
     
     
     var window: UIWindow?
-    var loggedIn: Bool = true {
+    var loggedIn: Bool = false {
         didSet {
             if loggedIn == true {
                 loadRootViewController()

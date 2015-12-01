@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol InfoTableViewControllerDelegate{
+    func reloadTableView()
+}
+
 class InfoTableViewController: UITableViewController {
     
     
@@ -30,6 +34,7 @@ class InfoTableViewController: UITableViewController {
     var documentId: String?
     
     var docInfo: ProductionDocuments?
+    var delegate: InfoTableViewControllerDelegate?;
     
     
 
@@ -79,9 +84,8 @@ class InfoTableViewController: UITableViewController {
     @IBAction func doneButton(sender: UIBarButtonItem) {
         
         self.dismissViewControllerAnimated(false, completion: nil)
+        delegate!.reloadTableView();
     }
-    
-    
     
     
     @IBAction func upVersionForm(sender: UIButton) {
