@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="p6" translatesAutoresizingMaskIntoConstraints="NO" id="CRu-3V-KRe">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="CRu-3V-KRe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                             </imageView>
@@ -162,8 +162,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="bbH-39-lJm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -2287,7 +2287,7 @@
                                         <rect key="frame" x="0.0" y="28" width="560" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hqm-Kp-CNF" id="qXg-El-EQP">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List Of Stage Users" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3x7-N9-bKF">
@@ -2514,10 +2514,10 @@
         <image name="1001white48" width="48" height="48"/>
         <image name="1002white48" width="48" height="48"/>
         <image name="1003white48" width="48" height="48"/>
+        <image name="background" width="3200" height="2000"/>
         <image name="logout-24" width="24" height="24"/>
         <image name="magnifier24" width="24" height="24"/>
         <image name="notification" width="24" height="24"/>
-        <image name="p6" width="2500" height="1667"/>
         <image name="pdf1" width="500" height="430"/>
         <image name="pencil41" width="32" height="32"/>
     </resources>
