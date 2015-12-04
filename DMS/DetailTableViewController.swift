@@ -8,20 +8,22 @@
 
 import UIKit
 
-class DetailTableViewController: UITableViewController, UIActionSheetDelegate, InfoTableViewControllerDelegate {
+
+
+class DetailTableViewController: UITableViewController, UIActionSheetDelegate, InfoTableViewControllerDelegate, FormSubmittedDelegate {
     
     
     //MARK: Variables and Constants
     
     @IBOutlet weak var createFromButton: UIBarButtonItem!
     @IBOutlet weak var notificationButton: UIBarButtonItem!
-    @IBOutlet weak var infoPencilButton: UIButton!
     var docList: [ProductionDocuments]?
     var masterdoc: ProductionDocuments?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
        self.fillDocListArray()
 
@@ -174,20 +176,23 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate, I
             let navcontroller = segue.destinationViewController as? UINavigationController
             if let controller = navcontroller?.topViewController as? FormViewController
             {
+                controller.isUpversionDoc = false
+                controller.delegate = self
                 controller.docTitle = "New Document"
             }
             
         }
         else if segue.identifier == "docviewer"
         {
-            if let superviewcell = sender as? DetailTableViewCell
-            {
-                let indexpath = self.tableView.indexPathForCell(superviewcell)
-                print("clicked on docviewer \(indexpath!.row)")
+            if let controller = segue.destinationViewController as? DocViewerController{
+                if let superviewcell = sender as? DetailTableViewCell
+                {
+                    let indexpath = self.tableView.indexPathForCell(superviewcell)
+                    controller.docPath = self.docList![indexpath!.row].docattachment
+                }
 
-                print(indexpath?.row)
             }
-
+            
         }else if segue.identifier == "showinfoactions"{
             if let superviewcell = sender?.superview!!.superview! as? DetailTableViewCell{
                 let indexpath = self.tableView.indexPathForCell(superviewcell)
@@ -204,11 +209,20 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate, I
         
     }
     
+    func formSubmittedorcreated() {
+        self.reloadTableView()
+    }
+    
     func reloadTableView() {
         self.fillDocListArray()
         self.tableView.reloadData()
     }
     
     
+    @IBAction func logout(sender: UIBarButtonItem) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.loggedIn = false
+    }
     
 }

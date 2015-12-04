@@ -13,6 +13,8 @@ class DocViewerController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     
+    var docPath: String?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +22,22 @@ class DocViewerController: UIViewController, UIWebViewDelegate {
         //Yet to implement all the code here
         
         self.title = "Doc Viewer"
+        //fall back
+        var docname = "finance"
+        if docPath != nil{
+            
+            let docpatharray = docPath!.characters.split{$0 == "/"}.map(String.init)
+            let docnamewithdot = docpatharray.last!
+            
+            //after gettign the last docname we have to give only the name and split by .
+            let docnamearray = docnamewithdot.characters.split{$0 == "."}.map(String.init)
+            docname = docnamearray.last!
+
+        }
+
         
-        let path = NSBundle.mainBundle().pathForResource("finance", ofType: "pdf")
+        
+        let path = NSBundle.mainBundle().pathForResource(docname, ofType: "pdf")
         let url = NSURL.fileURLWithPath(path!)
         let request = NSURLRequest(URL: url)
         self.webView.loadRequest(request)

@@ -21,6 +21,8 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
     @IBOutlet weak var stageNameField: UITextField!
     @IBOutlet weak var stageUsers: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentsField: UITextView!
+    
     
     var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
     var docInfo: ProductionDocuments?
@@ -35,6 +37,13 @@ class StageViewController: UIViewController, TableHelperDelegate, UITextFieldDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        commentsField.layer.borderColor = UIColor.lightGrayColor().CGColor
+        commentsField.layer.borderWidth = 0.5
+        commentsField.layer.cornerRadius = 5.0
+        commentsField.clipsToBounds = true
+        
+        
         self.tableView.layer.cornerRadius = 5.0
         self.tableView.clipsToBounds = true
         self.tableView.layer.borderWidth = 1.0

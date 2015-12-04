@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FormSubmittedDelegate{
+    func formSubmittedorcreated()
+}
+
 class FormViewController: UIViewController {
     
     
@@ -19,10 +23,13 @@ class FormViewController: UIViewController {
     
     @IBOutlet weak var containerVeiw: UIView!
     @IBOutlet weak var saveButtonItem: UIBarButtonItem!
+    @IBOutlet weak var cancleButtonItem: UIBarButtonItem!
+    
     
     var docTitle: String?
     var docInfo: ProductionDocuments?
-
+    var delegate: FormSubmittedDelegate?
+    
     
     //current container view in rightside view
     var docContainerController: UIViewController?
@@ -43,11 +50,12 @@ class FormViewController: UIViewController {
             print("upversiondoc")
         }else{
             userdefaults.setBool(false, forKey: "isupversion")
+            
             print("newform")
             
         }
         
-    
+        
         self.prepareButtonsArray()
         self.loadControllerArrays()
         
@@ -149,7 +157,7 @@ class FormViewController: UIViewController {
         sectionButtons.append(sectionBButton)
         sectionButtons.append(sectionCButton)
         sectionButtons.append(sectionDButton)
-
+        
     }
     
     
@@ -172,8 +180,10 @@ class FormViewController: UIViewController {
         
         // we have to save this form based on usergorups  into userdocs table
         self.persistAndClearData()
-        
         self.dismissViewControllerAnimated(false, completion: nil)
+        
+        delegate?.formSubmittedorcreated()
+        
         
     }
     
@@ -182,26 +192,16 @@ class FormViewController: UIViewController {
         print("form controllers view will disappear called")
     }
     
-    
-    
-    //Here we have to save the data from all controllers and update in production documents if doc is new create document or upversion
-    func persistAndClearData(){
-        
-        
+    func updateDocument(){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
-
+        
         let prodDocument = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
         
         
-//        if isUpversionDoc{
-//            prodDocument![0].docstatus = "Process"
-//            
-//        }else{
-//            prodDocument![0].docstatus = "Production"
-//        }
         
-         prodDocument![0].docstatus = "Process"
+        
+        prodDocument![0].docstatus = "Process"
         
         for eachController in self.profileControllers{
             print(self.docInfo?.docid)
@@ -219,62 +219,78 @@ class FormViewController: UIViewController {
                 }else{
                     prodDocument![0].docdescription = self.docInfo?.docdescription
                 }
-
+                
                 
                 
                 
             }else if eachController .isKindOfClass(LifeCycleViewController){
                 let lifeCycleController = eachController as? LifeCycleViewController
                 
-                if let lifecyclename = lifeCycleController?.lifeCycleNameField.text{
-                     prodDocument![0].lifecycle = lifecyclename
+                if lifeCycleController?.lifeCycleNameField != nil{
+                    prodDocument![0].lifecycle = lifeCycleController?.lifeCycleNameField.text
                 }else{
                     prodDocument![0].lifecycle = self.docInfo?.lifecycle
                 }
                 
-                if let categoryname = lifeCycleController?.categoryNameField.text{
-                    prodDocument![0].categoryname = categoryname
-                }
-
-                if let doceffectivedate = lifeCycleController?.datePicker.date{
-                    prodDocument![0].doceffectivedate = doceffectivedate
+                if lifeCycleController?.categoryNameField != nil{
+                    prodDocument![0].categoryname = lifeCycleController?.categoryNameField.text
                 }
                 
-
+                if lifeCycleController?.datePicker != nil{
+                    prodDocument![0].doceffectivedate = lifeCycleController?.datePicker.date
+                }
+                
+                
+                
+                
             }else if eachController .isKindOfClass(AuthorViewController){
                 let authorController = eachController as? AuthorViewController
                 
-                if let docowner = authorController?.initiatorLabel.text{
-                    prodDocument![0].docowner = docowner
+                if authorController?.initiatorLabel != nil{
+                    prodDocument![0].docowner = authorController?.initiatorLabel.text
                 }
-
+                
+                
+                
             }else if eachController .isKindOfClass(StageViewController){
                 let stageController = eachController as? StageViewController
                 
-                if stageController?.actionField.text == "Move To Production"{
-                    prodDocument![0].docstatus = "Production"
+                if stageController?.actionField != nil{
+                    if stageController?.actionField.text == "Move To Production"{
+                        prodDocument![0].docstatus = "Production"
+                    }
                 }
-
+                
+                
+                
                 if stageController?.stageid != "-1"{
                     prodDocument![0].stageid = stageController?.stageid
                     
-                    var routingDetails =  DataPersistence.getRoutingDetailsByPassingStageId((stageController?.stageid)!)
-                    if routingDetails?.count > 0 {
-                        let routingdetail = routingDetails![0]
-                        prodDocument![0].stageid = routingdetail.routingstageid
-                        
-                        
-                        var stageAccessgroup =  DataPersistence.getDataFromTableWithFilter("Stages_AccessGroup", coloumnName: "stageid", filterParameters: [routingdetail.routingstageid!]) as? [Stages_AccessGroup]
-                        
-                        if stageAccessgroup?.count > 0 {
-                            let accessgroupid = stageAccessgroup![0].accessgroupid
-                            prodDocument![0].accessgroupid = accessgroupid
-                            
-                        }
-
+                    if stageController?.stageid == "-1"{
+                        return
                     }
                     
-                   
+                    if stageController?.stageid != nil{
+                        var routingDetails =  DataPersistence.getRoutingDetailsByPassingStageId((stageController?.stageid)!)
+                        if routingDetails?.count > 0 {
+                            let routingdetail = routingDetails![0]
+                            prodDocument![0].stageid = routingdetail.routingstageid
+                            
+                            
+                            var stageAccessgroup =  DataPersistence.getDataFromTableWithFilter("Stages_AccessGroup", coloumnName: "stageid", filterParameters: [routingdetail.routingstageid!]) as? [Stages_AccessGroup]
+                            
+                            if stageAccessgroup?.count > 0 {
+                                let accessgroupid = stageAccessgroup![0].accessgroupid
+                                prodDocument![0].accessgroupid = accessgroupid
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                    
+                    
+                    
                     
                 }
             }
@@ -285,9 +301,9 @@ class FormViewController: UIViewController {
         }catch let error as NSError{
             print("could not save because of error \(error.debugDescription)")
         }
-   
         
-        let prodDocument1 = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
+        
+        /*   let prodDocument1 = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [(self.docInfo?.docid)!]) as? [ProductionDocuments]
         
         print(prodDocument1![0].docname)
         print(prodDocument1![0].docdescription)
@@ -295,14 +311,147 @@ class FormViewController: UIViewController {
         print(prodDocument1![0].doceffectivedate)
         print(prodDocument1![0].lifecycle)
         print(prodDocument1![0].categoryname)
-         print(prodDocument1![0].stageid)
-         print(prodDocument1![0].accessgroupid)
+        print(prodDocument1![0].stageid)
+        print(prodDocument1![0].accessgroupid)*/
         
-       
+        
+    }
+    
+    func insertDocument(){
+        
+        
+        
+        /* ["docid":"D3009","docname":"pqc-0265 PW Compliance Unsolicited Resume","docattachment":"","docversion":"1.2.0.0","docstatus":"Production","docowner":"sodishio.intel","doccreationdate":"17/11/2015","docdescription":"PW Compliance Unsolicited Resume","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"]*/
+        
+        var  newDocArray = [[String:AnyObject]]()
+        var eachDocument = [String: AnyObject]()
+        
+        //in db docid should be autoincremented for demo purpose hardcoding it
+        let documentsList = DataPersistence.getDataFromTableAsList("ProductionDocuments") as? [ProductionDocuments]
+        let doccount = documentsList?.count
+        let docid = 3000 + doccount!
+        let createdDocId = "D\(docid)"
+        print(createdDocId)
+        
+        eachDocument["docid"] = createdDocId
+        eachDocument["docstatus"] = "Process"
+        eachDocument["docowner"] = NSUserDefaults.standardUserDefaults().objectForKey("loggedinusername") as? String
+        
+        let curdate = NSDate()
+        let curDateFormatter = NSDateFormatter()
+        curDateFormatter.dateFormat = "dd/MM/yyyy"
+        let currDateString = curDateFormatter.stringFromDate(curdate)
+        eachDocument["doccreationdate"] = currDateString
+        
+        for eachController in self.profileControllers{
+            
+            
+            if eachController.isKindOfClass(DocProfileViewController){
+                let docprofilecontroller = eachController as? DocProfileViewController
+                
+                
+                if let docname = docprofilecontroller?.docNamelabel.text{
+                    eachDocument["docname"] = docname
+                }
+                
+                if let docdesc = docprofilecontroller?.docDescriptionTextView.text{
+                    eachDocument["docdescription"] = docdesc
+                }
+                
+                if let docattachment = docprofilecontroller?.uploadDocField.text{
+                    eachDocument["docattachment"] = docattachment
+                }
+                
+                
+                
+            }else if eachController .isKindOfClass(LifeCycleViewController){
+                let lifeCycleController = eachController as? LifeCycleViewController
+                
+                if lifeCycleController?.lifeCycleNameField != nil{
+                    eachDocument["lifecycle"] = lifeCycleController?.lifeCycleNameField.text
+                }
+                
+                if lifeCycleController?.categoryNameField != nil{
+                    eachDocument["categoryname"] = lifeCycleController?.categoryNameField.text
+                }
+                
+                eachDocument["doceffectivedate"] = ""
+                if lifeCycleController?.datePicker != nil{
+                    if let doceffectivedate = lifeCycleController?.datePicker.date{
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "dd/MM/yyyy"
+                        let dateString = dateFormatter.stringFromDate(doceffectivedate)
+                        eachDocument["doceffectivedate"] = "\(dateString)"
+                    }
+                }
+                
+                
+                
+            }else if eachController .isKindOfClass(StageViewController){
+                let stageController = eachController as? StageViewController
+                
+                if stageController?.commentsField != nil{
+                    eachDocument["doccomments"] = stageController?.commentsField.text
+                    
+                }
+                
+                var routingDetails =  DataPersistence.getRoutingDetailsByPassingStageId("LS1500")
+                if routingDetails?.count > 0 {
+                    let routingdetail = routingDetails![0]
+                    eachDocument["stageid"] = routingdetail.routingstageid
+                    
+                    var stageAccessgroup =  DataPersistence.getDataFromTableWithFilter("Stages_AccessGroup", coloumnName: "stageid", filterParameters: [routingdetail.routingstageid!]) as? [Stages_AccessGroup]
+                    
+                    if stageAccessgroup?.count > 0 {
+                        let accessgroupid = stageAccessgroup![0].accessgroupid
+                        eachDocument["accessgroupid"] = accessgroupid
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        newDocArray.append(eachDocument)
+        DataPersistence.insertProductionDocsSampleData(newDocArray,tobeInserted: false)
+        
+        
+        let prodDocument1 = DataPersistence.getDataFromTableWithFilter("ProductionDocuments", coloumnName: "docid", filterParameters: [createdDocId]) as? [ProductionDocuments]
+        
+        print(prodDocument1![0].docname)
+        print(prodDocument1![0].docdescription)
+        print(prodDocument1![0].docstatus)
+        print(prodDocument1![0].doceffectivedate)
+        print(prodDocument1![0].lifecycle)
+        print(prodDocument1![0].categoryname)
+        print(prodDocument1![0].stageid)
+        print(prodDocument1![0].accessgroupid)
+    }
+    
+    //Here we have to save the data from all controllers and update in production documents if doc is new create document or upversion
+    func persistAndClearData(){
+        
+        if isUpversionDoc{
+            self.updateDocument()
+        }else{
+            self.insertDocument()
+        }
+        
+        
+        
         //clear all the form controller
         self.sectionButtons.removeAll()
         self.profileControllers.removeAll()
     }
     
+    
+    @IBAction func cancleButton(sender: UIBarButtonItem) {
+        
+        self.dismissViewControllerAnimated(false, completion: nil);
+    }
+    
+
+
     
 }

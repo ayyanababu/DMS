@@ -51,8 +51,7 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
     func setAutoPopulateData(){
         self.docNamelabel.text = docInfo?.docname
         self.docDescriptionTextView.text = docInfo?.docdescription
-        self.uploadDocField.text = ""
-        
+        self.uploadDocField.text = self.docInfo?.docattachment;//"DMS/resources/finance.pdf"
     
     }
 
@@ -66,6 +65,8 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
     //MARK: -TextFieldDelegate Methods
     
     func textFieldDidEndEditing(textField: UITextField) {
+        
+        
         
         print(self.docNamelabel.text)
         print(self.purposeField.text)
@@ -97,8 +98,24 @@ class DocProfileViewController: UIViewController, TableHelperDelegate, UITextFie
                 controller.delegate = self
                 
                 controller.navTitle = storyBoardConstants.UPLOAD_TITLE
-                let array: [String] = ["Doc1","Doc2","Doc3","Doc4","Doc5"]
-                controller.tableHelperData = array
+                let path = NSBundle.mainBundle().resourcePath
+                let fileMgr = NSFileManager.defaultManager()
+                var docarray = [String]()
+
+                do{
+                    let docs = try fileMgr.contentsOfDirectoryAtPath(path!)
+                    for doc in docs{
+                        if doc.rangeOfString("pdf") != nil{
+                            var docpath = "DMS/local/resources/"
+                            docpath += doc
+                            docarray.append(docpath)
+                        }
+                    }
+                }catch{
+                    print(error)
+                }
+
+                controller.tableHelperData = docarray
             }
             
         }

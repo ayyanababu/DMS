@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationController: UITableViewController {
+class NotificationController: UITableViewController, FormSubmittedDelegate {
     
     
     var docList: [ProductionDocuments]?
@@ -79,6 +79,11 @@ class NotificationController: UITableViewController {
         
         
         
+    }
+    
+    
+    func formSubmittedorcreated() {
+        self.dismissViewControllerAnimated(false, completion: nil);
     }
     
     

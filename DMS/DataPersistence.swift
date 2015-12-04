@@ -31,32 +31,7 @@ class DataPersistence{
     
     
     
-    static let documentsArray: [[String: AnyObject]] = [
-        
-        
-        ["docid":"D3000","docname":"Employment Performance Improvement and Corrective Action Process Policy","docattachment":"","docversion":"2.0.0.0","docstatus":"Production","docowner":"bpatel.usaa","doccreationdate":"17/11/2015","docdescription":"Performance Review","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3001","docname":"qa-p-0015 Work Inspection ProcedurePolicy","docattachment":"","docversion":"1.7.0.0","docstatus":"Production","docowner":"sodishio.intel","doccreationdate":"17/11/2015","docdescription":"Work Inspection Procedure","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3002","docname":"fa-p-0009 Wire Management","docattachment":"","docversion":"1.1.0.0","docstatus":"Production","docowner":"ayyana.ms","doccreationdate":"17/11/2015","docdescription":"Wire Management","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3003","docname":"pqc-0166 Phone Request","docattachment":"","docversion":"1.0.0.0","docstatus":"Production","docowner":"sada.ms","doccreationdate":"17/11/2015","docdescription":"Phone Request","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3004","docname":"pqc-0166 Phone Request","docattachment":"","docversion":"1.0.0.0","docstatus":"Production","docowner":"sachee.ms","doccreationdate":"17/11/2015","docdescription":"Delivery Documentation","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3005","docname":"pqc-0266 PW OnBoarding BGC","docattachment":"","docversion":"1.0.0.0","docstatus":"Production","docowner":"debra.usaa","doccreationdate":"17/11/2015","docdescription":"PW OnBoarding BGC","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3006","docname":"pqc-0268 PW OnBoarding Files to Send","docattachment":"","docversion":"1.0.0.0","docstatus":"Production","docowner":"manuel.bcie","doccreationdate":"17/11/2015","docdescription":"PW OnBoarding Files to Send","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3007","docname":"tss-p-0004 FAA DER Commercial Deviation Report","docattachment":"","docversion":"1.2.0.0","docstatus":"Production","docowner":"reyesj.bcie","doccreationdate":"17/11/2015","docdescription":"FAA DER Commercial Deviation Report","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3008","docname":"pqc-0283 AQS Procedure Librarian","docattachment":"","docversion":"1.2.0.0","docstatus":"Production","docowner":"bpatel.usaa","doccreationdate":"17/11/2015","docdescription":"AQS Procedure Librarian","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"],
-        
-        ["docid":"D3009","docname":"pqc-0265 PW Compliance Unsolicited Resume","docattachment":"","docversion":"1.2.0.0","docstatus":"Production","docowner":"sodishio.intel","doccreationdate":"17/11/2015","docdescription":"PW Compliance Unsolicited Resume","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1"]
-        
-        
-    ]
-    
+       
     
     static let categories: [[String: AnyObject]] = [
         ["categoryid":"C1300", "categoryname":"ASC"],
@@ -166,28 +141,8 @@ class DataPersistence{
     
     
         ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Request","stageid":"LS1500","routingstagename":"ASC Legal SME Review","routingstageid":"LS1501","actionname":"ASC Legal SME Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Request","stageid":"LS1500","routingstagename":"Withdraw","routingstageid":"0","actionname":"Withdraw"],
         ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Legal SME Review","stageid":"LS1501","routingstagename":"ASC Business Review","routingstageid":"LS1502","actionname":"ASC Business Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Legal SME Review","stageid":"LS1501","routingstagename":"ASC Request","routingstageid":"LS1500","actionname":"ASC Request"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Review","stageid":"LS1502","routingstagename":"ASC Legal SME Review","routingstageid":"LS1501","actionname":"ASC Legal SME Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Review","stageid":"LS1502","routingstagename":"ASC Business Final Acknowledgement","routingstageid":"LS1503","actionname":"ASC Business Final Acknowledgement"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Review","stageid":"LS1502","routingstagename":"ASC Request","routingstageid":"LS1501","actionname":"ASC Request"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Final Acknowledgement","stageid":"LS1503","routingstagename":"ASC Business Review","routingstageid":"LS1502","actionname":"ASC Business Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Final Acknowledgement","stageid":"LS1503","routingstagename":"Enterprise Governance Review","routingstageid":"LS1504","actionname":"Enterprise Governance Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"Enterprise Governance Review","stageid":"LS1504","routingstagename":"ASC Business Final Acknowledgement","routingstageid":"LS1503","actionname":"ASC Business Final Acknowledgement"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"Enterprise Governance Review","stageid":"LS1504","routingstagename":"ASC Final Acknowledgement","routingstageid":"LS1505","actionname":"ASC Final Acknowledgement"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"Enterprise Governance Review","stageid":"LS1504","routingstagename":"ASC Business Review","routingstageid":"LS1502","actionname":"ASC Business Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Final Acknowledgement","stageid":"LS1505","routingstagename":"Enterprise Governance Review","routingstageid":"LS1504","actionname":"Enterprise Governance Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Final Acknowledgement","stageid":"LS1505","routingstagename":"ÀSC Committee Review","routingstageid":"LS1506","actionname":"ÀSC Committee Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ÀSC Committee Review","stageid":"LS1506","routingstagename":"ASC Final Acknowledgement","routingstageid":"LS1505","actionname":"ASC Final Acknowledgement"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ÀSC Committee Review","stageid":"LS1506","routingstagename":"ASC Annual Review Approval","routingstageid":"LS1507","actionname":"ASC Annual Review Approval"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ÀSC Committee Review","stageid":"LS1506","routingstagename":"Withdraw","routingstageid":"0","actionname":"Withdraw"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Annual Review Approval","stageid":"LS1507","routingstagename":"ÀSC Committee Review","routingstageid":"LS1506","actionname":"ÀSC Committee Review"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Annual Review Approval","stageid":"LS1507","routingstagename":"Move To Production","routingstageid":"0","actionname":"Move To Production"],
-        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Annual Review Approval","stageid":"LS1507","routingstagename":"Withdraw","routingstageid":"0","actionname":"Withdraw"]
-
-    
-    
+        ["lifecyclename":"Audit Annual Review","lifecycleid":"1400","stagename":"ASC Business Review","stageid":"LS1502","routingstagename":"ASC Legal SME Review","routingstageid":"-1","actionname":"Move To Production"],
     ]
     
     
@@ -507,7 +462,7 @@ class DataPersistence{
     }
     
     
-    static func insertProductionDocsSampleData(){
+    static func insertProductionDocsSampleData(documentsArray: [[String: AnyObject]], tobeInserted: Bool){
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext
@@ -515,10 +470,14 @@ class DataPersistence{
         let fetchRequest = NSFetchRequest(entityName: "ProductionDocuments")
         //fetchRequest.predicate = NSPredicate(format: "searchkey != nil")
         
-        let count = managedContext.countForFetchRequest(fetchRequest, error: nil)
-        if count > 0{
-            return
+        
+        if tobeInserted{
+            let count = managedContext.countForFetchRequest(fetchRequest, error: nil)
+            if count > 0{
+                return
+            }
         }
+        
         
         
         for dict in documentsArray{
@@ -533,11 +492,15 @@ class DataPersistence{
             
             newDoc.docid = docdict["docid"] as? String
             newDoc.docname = docdict["docname"] as? String
-            let data = " ".dataUsingEncoding(NSUTF8StringEncoding)
-            newDoc.docattachment  = data
+            newDoc.docattachment  = docdict["docattachment"] as? String
             newDoc.docversion = docdict["docversion"] as? String
             newDoc.docstatus = docdict["docstatus"] as? String
             newDoc.docowner = docdict["docowner"] as? String
+            newDoc.doccomments = docdict["doccomments"] as? String
+            
+            if newDoc.docname == "" {
+                return
+            }
             
             let todaysDate:NSDate = NSDate()
             let dateFormatter:NSDateFormatter = NSDateFormatter()
@@ -550,6 +513,7 @@ class DataPersistence{
             newDoc.docdescription = docdict["docdescription"] as? String
             
             
+            
             let dateFormatter1:NSDateFormatter = NSDateFormatter()
             dateFormatter1.dateFormat = "dd/MM/yyyy"
             let dateString = docdict["doceffectivedate"] as? String
@@ -558,10 +522,14 @@ class DataPersistence{
             
             let dateFormatter2:NSDateFormatter = NSDateFormatter()
             dateFormatter2.dateFormat = "dd/MM/yyyy"
-            let dateString1 = docdict["docnextreviewdate"] as? String
-            
-            let date1 = dateFormatter2.dateFromString(dateString1!)
-            newDoc.docnextreviewdate = date1
+            if let docnextreviewdate = docdict["docnextreviewdate"] as? String{
+                //let dateString1 = docdict["docnextreviewdate"] as? String
+                let dateString1 = docnextreviewdate
+                
+                let date1 = dateFormatter2.dateFromString(dateString1)
+                newDoc.docnextreviewdate = date1
+
+            }
             
             newDoc.lifecycle = docdict["lifecycle"] as? String
             newDoc.categoryname = docdict["categoryname"] as? String

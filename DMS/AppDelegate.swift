@@ -13,17 +13,37 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelegate {
     
     
-    /*var todaysDate:NSDate = NSDate()
-    var dateFormatter:NSDateFormatter = NSDateFormatter()
-    dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
-    var DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
-    dateFormatter.
-    
-    print(DateInFormat)*/
+    let documentsArray: [[String: AnyObject]] = [
+        
+        
+        
+        ["docid":"D3000","docname":"Employment Performance Improvement and Corrective Action Process Policy","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"2.0.0.0","docstatus":"Production","docowner":"bpatel.usaa","doccreationdate":"17/11/2015","docdescription":"Performance Review","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3001","docname":"qa-p-0015 Work Inspection ProcedurePolicy","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.7.0.0","docstatus":"Production","docowner":"sodishio.intel","doccreationdate":"17/11/2015","docdescription":"Work Inspection Procedure","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3002","docname":"fa-p-0009 Wire Management","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.1.0.0","docstatus":"Production","docowner":"ayyana.ms","doccreationdate":"17/11/2015","docdescription":"Wire Management","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3003","docname":"pqc-0166 Phone Request","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.0.0.0","docstatus":"Production","docowner":"sada.ms","doccreationdate":"17/11/2015","docdescription":"Phone Request","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3004","docname":"pqc-0166 Phone Request","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.0.0.0","docstatus":"Production","docowner":"sachee.ms","doccreationdate":"17/11/2015","docdescription":"Delivery Documentation","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"ASC","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3005","docname":"pqc-0266 PW OnBoarding BGC","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.0.0.0","docstatus":"Production","docowner":"debra.usaa","doccreationdate":"17/11/2015","docdescription":"PW OnBoarding BGC","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3006","docname":"pqc-0268 PW OnBoarding Files to Send","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.0.0.0","docstatus":"Production","docowner":"manuel.bcie","doccreationdate":"17/11/2015","docdescription":"PW OnBoarding Files to Send","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3007","docname":"tss-p-0004 FAA DER Commercial Deviation Report","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.2.0.0","docstatus":"Production","docowner":"reyesj.bcie","doccreationdate":"17/11/2015","docdescription":"FAA DER Commercial Deviation Report","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3008","docname":"pqc-0283 AQS Procedure Librarian","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.2.0.0","docstatus":"Production","docowner":"bpatel.usaa","doccreationdate":"17/11/2015","docdescription":"AQS Procedure Librarian","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1","doccomments":" "],
+        
+        ["docid":"D3009","docname":"pqc-0265 PW Compliance Unsolicited Resume","docattachment":"/DMS/Local/Resources/finance.pdf","docversion":"1.2.0.0","docstatus":"Production","docowner":"sodishio.intel","doccreationdate":"17/11/2015","docdescription":"PW Compliance Unsolicited Resume","doceffectivedate":"17/11/2015","docnextreviewdate":"17/11/2016","lifecycle":"Audit Annual Review","categoryname":"Enterprise Governance","stageid":"-1","accessgroupid":"-1","doccomments":" "]
+        
+        
+    ]
+
     
     
     var window: UIWindow?
-    var loggedIn: Bool = false {
+    var loggedIn: Bool = true {
         didSet {
             if loggedIn == true {
                 loadRootViewController()
@@ -42,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginViewControllerDelega
        
         //InsertSampleData
         DataPersistence.insertUsersSampleData()
-        DataPersistence.insertProductionDocsSampleData()
+        DataPersistence.insertProductionDocsSampleData(documentsArray,tobeInserted: true)
         DataPersistence.insertRoutingTableData()
         DataPersistence.insertUserAccessGroupData()
         DataPersistence.insertAccessGroupData()

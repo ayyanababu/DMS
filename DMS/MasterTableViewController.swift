@@ -49,7 +49,6 @@ class MasterTableViewController: UITableViewController, UISearchBarDelegate {
         self.constructCategoryLines()
         
         self.tableView.backgroundColor = UIColor.whiteColor()
-        self.logOutButton.backgroundColor = UIColor(colorLiteralRed: 251/255, green: 73/255, blue: 71/255, alpha: 1.0)
     }
     
     override func didReceiveMemoryWarning() {

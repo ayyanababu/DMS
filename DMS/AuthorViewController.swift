@@ -8,15 +8,26 @@
 
 import UIKit
 
-class AuthorViewController: UIViewController, UITextFieldDelegate {
+class AuthorViewController: UIViewController, UITextFieldDelegate, TableHelperDelegate {
+    
+    struct storyboardconstants{
+        static var AUTHOR_SEGUE = "authorsegue"
+        static var OWNER_SEGUE = "ownersegue"
+        static var USERS_TITLE = "Users"
+        
+    }
     
     
     @IBOutlet weak var initiatorLabel: UITextField!
     @IBOutlet weak var authorLabel: UITextField!
     @IBOutlet weak var OwnerLabel: UITextField!
+    
+    var fieldtype: String?
+    
     var isUpVersion: Bool = NSUserDefaults.standardUserDefaults().boolForKey("isupversion")
     var docInfo: ProductionDocuments?
     var docid: String?
+    var userslist =  [String]()
 
 
     override func viewDidLoad() {
@@ -28,6 +39,14 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
         if isUpVersion{
             print("isupversion")
             self.setAutopopulatedata()
+        }
+        
+        self.authorLabel.text = initiatorname
+        self.OwnerLabel.text = initiatorname
+        
+        let userNamelist = DataPersistence.getDataFromTableAsList("Users") as? [Users]
+        for eachUser in userNamelist!{
+            userslist.append(eachUser.username!)
         }
 
 
@@ -43,6 +62,29 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
         
         
     }
+    
+    
+    //MARK: -Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navcontroller = segue.destinationViewController as? UINavigationController
+        
+        if segue.identifier == storyboardconstants.AUTHOR_SEGUE
+        {
+            if let controller = navcontroller?.topViewController as? TableHelperViewController{
+                controller.delegate = self
+                fieldtype = "author"
+                controller.navTitle = storyboardconstants.USERS_TITLE
+                controller.tableHelperData = userslist            }
+            
+        }else if segue.identifier == storyboardconstants.OWNER_SEGUE{
+            if let controller = navcontroller?.topViewController as? TableHelperViewController{
+                controller.delegate = self
+                controller.navTitle = storyboardconstants.USERS_TITLE
+                controller.tableHelperData = userslist              
+            }
+        }
+    }
+
 
   
     
@@ -53,6 +95,18 @@ class AuthorViewController: UIViewController, UITextFieldDelegate {
         print(OwnerLabel.text)
     }
     
-    
+    func doneSelectingACell(selectedValue: String) {
+        print("selected value \(selectedValue)")
+        
+        if fieldtype == "author"{
+            self.authorLabel.text = selectedValue
+            fieldtype = ""
+        }else{
+            self.OwnerLabel.text = selectedValue
+        }
+        dismissViewControllerAnimated(false, completion: nil)
+        
+    }
+
     
 }

@@ -42,7 +42,7 @@ class InfoTableViewController: UITableViewController {
         super.viewDidLoad()
         print(self.docInfo)
         self.docNameLabel.text = self.docInfo?.docname
-        self.docAttachmentlabel.text = ""
+        self.docAttachmentlabel.text = self.docInfo?.docattachment;//"DMS/resources/finance.pdf";
         self.docVersionLabel.text = self.docInfo?.docversion
         self.docStatuslabel.text = self.docInfo?.docversion
         self.docNumber.text = "1"

@@ -25,7 +25,8 @@
     <entity name="ProductionDocuments" representedClassName=".ProductionDocuments" syncable="YES">
         <attribute name="accessgroupid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="categoryname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="docattachment" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="docattachment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="doccomments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="doccreationdate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="docdescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="doceffectivedate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -82,7 +83,7 @@
         <element name="LifeCycle" positionX="16" positionY="213" width="128" height="75"/>
         <element name="Lifecycle_Category" positionX="-153" positionY="198" width="128" height="90"/>
         <element name="LifeCycle_Stages" positionX="-36" positionY="-9" width="128" height="90"/>
-        <element name="ProductionDocuments" positionX="-81" positionY="-306" width="128" height="285"/>
+        <element name="ProductionDocuments" positionX="-81" positionY="-306" width="128" height="300"/>
         <element name="RoutingDetails" positionX="88" positionY="-90" width="128" height="150"/>
         <element name="Stages_AccessGroup" positionX="-216" positionY="9" width="128" height="120"/>
         <element name="Users" positionX="-405" positionY="-261" width="128" height="148"/>

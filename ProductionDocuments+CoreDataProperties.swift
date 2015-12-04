@@ -2,7 +2,7 @@
 //  ProductionDocuments+CoreDataProperties.swift
 //  DMS
 //
-//  Created by Raja Ayyan on 01/12/15.
+//  Created by Raja Ayyan on 03/12/15.
 //  Copyright © 2015 metricstream. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -14,8 +14,9 @@ import CoreData
 
 extension ProductionDocuments {
 
+    @NSManaged var accessgroupid: String?
     @NSManaged var categoryname: String?
-    @NSManaged var docattachment: NSData?
+    @NSManaged var docattachment: String?
     @NSManaged var doccreationdate: NSDate?
     @NSManaged var docdescription: String?
     @NSManaged var doceffectivedate: NSDate?
@@ -28,7 +29,7 @@ extension ProductionDocuments {
     @NSManaged var lifecycle: String?
     @NSManaged var stageid: String?
     @NSManaged var userid: String?
-    @NSManaged var accessgroupid: String?
+    @NSManaged var doccomments: String?
     @NSManaged var userslist: NSOrderedSet?
 
 }
