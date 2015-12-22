@@ -34,11 +34,11 @@
 		3586CBF81BFC746200EA7977 /* Stages_AccessGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBE21BFC746200EA7977 /* Stages_AccessGroup.swift */; };
 		3586CBF91BFC746200EA7977 /* LifeCycle_Stages+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBE31BFC746200EA7977 /* LifeCycle_Stages+CoreDataProperties.swift */; };
 		3586CBFA1BFC746200EA7977 /* LifeCycle_Stages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3586CBE41BFC746200EA7977 /* LifeCycle_Stages.swift */; };
+		358E55991C1AFA890084BDAB /* finance.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 358E55981C1AFA890084BDAB /* finance.pdf */; };
 		359A1DFA1C104AAE008E3CFB /* ProductionDocuments+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359A1DF81C104AAE008E3CFB /* ProductionDocuments+CoreDataProperties.swift */; };
 		359A1DFB1C104AAE008E3CFB /* ProductionDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359A1DF91C104AAE008E3CFB /* ProductionDocuments.swift */; };
 		359A1DFD1C106CCB008E3CFB /* invoicesample.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 359A1DFC1C106CCB008E3CFB /* invoicesample.pdf */; };
 		35D9E95A1BF4F8F9009E531B /* DocViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D9E9591BF4F8F9009E531B /* DocViewerController.swift */; };
-		35D9E95C1BF4FE76009E531B /* finance.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 35D9E95B1BF4FE76009E531B /* finance.pdf */; };
 		35D9E9601BF5035B009E531B /* InfoTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D9E95F1BF5035B009E531B /* InfoTableViewController.swift */; };
 		35E733C11BF1E35B00815755 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E733C01BF1E35B00815755 /* AppDelegate.swift */; };
 		35E733C61BF1E35B00815755 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35E733C41BF1E35B00815755 /* Main.storyboard */; };
@@ -103,11 +103,11 @@
 		3586CBE21BFC746200EA7977 /* Stages_AccessGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stages_AccessGroup.swift; path = ../Stages_AccessGroup.swift; sourceTree = "<group>"; };
 		3586CBE31BFC746200EA7977 /* LifeCycle_Stages+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LifeCycle_Stages+CoreDataProperties.swift"; path = "../LifeCycle_Stages+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		3586CBE41BFC746200EA7977 /* LifeCycle_Stages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LifeCycle_Stages.swift; path = ../LifeCycle_Stages.swift; sourceTree = "<group>"; };
+		358E55981C1AFA890084BDAB /* finance.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = finance.pdf; sourceTree = "<group>"; };
 		359A1DF81C104AAE008E3CFB /* ProductionDocuments+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "ProductionDocuments+CoreDataProperties.swift"; path = "../ProductionDocuments+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		359A1DF91C104AAE008E3CFB /* ProductionDocuments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductionDocuments.swift; path = ../ProductionDocuments.swift; sourceTree = "<group>"; };
 		359A1DFC1C106CCB008E3CFB /* invoicesample.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = invoicesample.pdf; sourceTree = "<group>"; };
 		35D9E9591BF4F8F9009E531B /* DocViewerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocViewerController.swift; sourceTree = "<group>"; };
-		35D9E95B1BF4FE76009E531B /* finance.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; name = finance.pdf; path = ../../../../Desktop/icons/finance.pdf; sourceTree = "<group>"; };
 		35D9E95F1BF5035B009E531B /* InfoTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoTableViewController.swift; sourceTree = "<group>"; };
 		35E733BD1BF1E35B00815755 /* DMS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35E733C01BF1E35B00815755 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		35ABA7151BF76F26000283FD /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				35D9E95B1BF4FE76009E531B /* finance.pdf */,
+				358E55981C1AFA890084BDAB /* finance.pdf */,
 				359A1DFC1C106CCB008E3CFB /* invoicesample.pdf */,
 			);
 			name = resources;
@@ -446,8 +446,8 @@
 				35E733CE1BF1E35B00815755 /* LaunchScreen.storyboard in Resources */,
 				359A1DFD1C106CCB008E3CFB /* invoicesample.pdf in Resources */,
 				35E733CB1BF1E35B00815755 /* Assets.xcassets in Resources */,
+				358E55991C1AFA890084BDAB /* finance.pdf in Resources */,
 				35E733C61BF1E35B00815755 /* Main.storyboard in Resources */,
-				35D9E95C1BF4FE76009E531B /* finance.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
