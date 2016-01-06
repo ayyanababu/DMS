@@ -31,7 +31,7 @@ class DocViewerController: UIViewController, UIWebViewDelegate {
             
             //after gettign the last docname we have to give only the name and split by .
             let docnamearray = docnamewithdot.characters.split{$0 == "."}.map(String.init)
-            docname = docnamearray.last!
+            docname = docnamearray[0]
 
         }
 
