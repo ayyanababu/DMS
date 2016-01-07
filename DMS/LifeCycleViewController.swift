@@ -130,33 +130,43 @@ class LifeCycleViewController: UIViewController, TableHelperDelegate, UITextFiel
                 
                 let lifecycleid = self.getLifeCycleId(self.lifeCycleNameField.text!)
                 
-                 NSUserDefaults.standardUserDefaults().setValue(lifecycleid, forKey: "selectedlifecycleid")
-                
-                let lifecycle_categories = DataPersistence.getDataFromTableWithFilter("Lifecycle_Category", coloumnName: "lifecycleid", filterParameters: [lifecycleid]) as? [Lifecycle_Category]
-              
-                self.lifecycle_categories = lifecycle_categories
-                var categoryArray = [String]()
-                for eachcategory in lifecycle_categories!{
-                    categoryArray.append(eachcategory.categoryname!)
+                if (lifecycleid != nil){
+                    NSUserDefaults.standardUserDefaults().setValue(lifecycleid, forKey: "selectedlifecycleid")
+                    
+                    let lifecycle_categories = DataPersistence.getDataFromTableWithFilter("Lifecycle_Category", coloumnName: "lifecycleid", filterParameters: [lifecycleid!]) as? [Lifecycle_Category]
+                    
+                    self.lifecycle_categories = lifecycle_categories
+                    var categoryArray = [String]()
+                    for eachcategory in lifecycle_categories!{
+                        categoryArray.append(eachcategory.categoryname!)
+                    }
+                    
+                    controller.tableHelperData = categoryArray
                 }
                 
-                controller.tableHelperData = categoryArray
+                
 
             }
         }
     }
     
     
-    func getLifeCycleId(lifecycleName:String) -> String{
+    func getLifeCycleId(let lifecycleName:String) -> String?{
         
         var lifecycleId: String?
+        if lifecycleName == ""{
+            //lifecycleName = "Audit Annual Review"
+            let alert = UIAlertController(title: "Alert", message: "LifeCycle Name should not be empty", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return nil;
+        }
         for eachLifeCycle in self.lifeCycles{
             if eachLifeCycle.lifecyclename == lifecycleName{
                 lifecycleId =  eachLifeCycle.lifecycleid
                 break;
             }
         }
-       // lifecycleId = nil
         return lifecycleId!
     }
     
