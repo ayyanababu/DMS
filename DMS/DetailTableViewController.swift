@@ -218,6 +218,9 @@ class DetailTableViewController: UITableViewController, UIActionSheetDelegate, I
         self.tableView.reloadData()
     }
     
+    @IBAction func refreshScreen(sender: UIBarButtonItem) {
+        self.reloadTableView()
+    }
     
     @IBAction func logout(sender: UIBarButtonItem) {
         
