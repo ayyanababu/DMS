@@ -34,6 +34,7 @@ class LoginViewController: UIViewController {
         self.loginButton.layer.cornerRadius = 6.0
         self.loginButton.clipsToBounds = true
         
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -93,6 +94,7 @@ class LoginViewController: UIViewController {
     
     
 }
+
 
 
 

@@ -17,16 +17,16 @@ class DataPersistence{
     
     static let userdetailsArray: [[String: AnyObject]] = [
         
-        ["id":"U2300", "username":"bpatel.usaa","firstname":"Bimal","lastname":"Patel","password":"welcome*123","role":"DMS_Manager"],
-        ["id":"U2301", "username":"sodishio.intel","firstname":"Stella","lastname":"Odishio","password":"welcome*123","role":"DMS_Manager"],
-        ["id":"U2302", "username":"ayyana.ms","firstname":"Ayyanababu","lastname":"Kopparthi Raja","password":"welcome*123","role":"DMS_Manager",],
-        ["id":"U2303", "username":"sada.ms","firstname":"Sadananda","lastname":"Vaidya","password":"welcome*123","role":"DMS_Manager"],
-        ["id":"U2304", "username":"sachee.ms","firstname":"Sachee","lastname":"Choubey","password":"welcome*123","role":"DMS_Manager"],
-        ["id":"U2305", "username":"debra.usaa","firstname":"Debra","lastname":"Cooper","password":"welcome*123","role":"DMS_User"],
-        ["id":"U2306", "username":"manuel.bcie","firstname":"Manuel","lastname":"Salinas","password":"welcome*123","role":"DMS_User"],
-        ["id":"U2307", "username":"reyesj.bcie","firstname":"Jose","lastname":"Fernando","password":"welcome*123","role":"DMS_User"],
-        ["id":"U2308", "username":"DMS_User1","firstname":"DMS","lastname":"User1","password":"welcome*123","role":"DMS_User"],
-        ["id":"U2309", "username":"DMS_User2","firstname":"DMS","lastname":"User2","password":"welcome*123","role":"DMS_User"],
+        ["id":"U2300", "username":"bpatel.usaa","firstname":"Bimal","lastname":"Patel","password":"123456","role":"DMS_Manager"],
+        ["id":"U2301", "username":"sodishio.intel","firstname":"Stella","lastname":"Odishio","password":"123456","role":"DMS_Manager"],
+        ["id":"U2302", "username":"ayyana.ms","firstname":"Ayyanababu","lastname":"Kopparthi Raja","password":"123456","role":"DMS_Manager",],
+        ["id":"U2303", "username":"sada.ms","firstname":"Sadananda","lastname":"Vaidya","password":"123456","role":"DMS_Manager"],
+        ["id":"U2304", "username":"sachee.ms","firstname":"Sachee","lastname":"Choubey","password":"123456","role":"DMS_Manager"],
+        ["id":"U2305", "username":"debra.usaa","firstname":"Debra","lastname":"Cooper","password":"123456","role":"DMS_User"],
+        ["id":"U2306", "username":"manuel.bcie","firstname":"Manuel","lastname":"Salinas","password":"123456","role":"DMS_User"],
+        ["id":"U2307", "username":"reyesj.bcie","firstname":"Jose","lastname":"Fernando","password":"123456","role":"DMS_User"],
+        ["id":"U2308", "username":"DMS_User1","firstname":"DMS","lastname":"User1","password":"123456","role":"DMS_User"],
+        ["id":"U2309", "username":"DMS_User2","firstname":"DMS","lastname":"User2","password":"123456","role":"DMS_User"],
     ]
     
     
