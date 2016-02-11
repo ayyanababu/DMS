@@ -200,7 +200,7 @@ class FormViewController: UIViewController {
         
         
         
-        
+        var isProduction = false
         prodDocument![0].docstatus = "Process"
         
         for eachController in self.profileControllers{
@@ -258,6 +258,7 @@ class FormViewController: UIViewController {
                 if stageController?.actionField != nil{
                     if stageController?.actionField.text == "Move To Production"{
                         prodDocument![0].docstatus = "Production"
+                        isProduction = true
                     }
                 }
                 
@@ -294,6 +295,10 @@ class FormViewController: UIViewController {
                     
                 }
             }
+        }
+        
+        if isProduction{
+            
         }
         
         do{
